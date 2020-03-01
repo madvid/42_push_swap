@@ -3,27 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+         #
+#    By: weilin <weilin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/11 16:48:33 by weilin            #+#    #+#              #
-#    Updated: 2020/02/29 18:30:39 by mdavid           ###   ########.fr        #
+#    Updated: 2020/02/25 18:49:59 by weilin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CHECKER = checker
-
 PUSH_SWAP = push_swap
 
 LIB_DIR = libft/
-LIB_FILES = ft_atoi ft_isdigit ft_isnumber
+LIB_FILES = ft_atoi ft_isdigit ft_isnumber \
 
-FILES_CHECK = checker ft_chek_args
-FILES_PSH_SWP = push_swap
+CHECK_FILES = checker ft_check_args
+PSH_SWP_FILES = push_swap
 
-FILES_CHECK+= $(addprefix $(LIB_DIR),$(LIB_FILES))
-FILES_PSH_SWP+= $(addprefix $(LIB_DIR),$(LIB_FILES))
+CHECK_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))
+PSH_SWP_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))
 
-CC = gcc
+#CC = gcc
+CC = clang
 FLAG = -Wall -Wextra -Werror -g -I $(INC_DIR)
 
 RM = rm -rf
@@ -32,28 +32,20 @@ CCH_DIR = cache/
 SRC_DIR = src/
 INC_DIR = include/
 
-SRC_CHECK = $(addprefix $(SRC_DIR),$(addsuffix .c,$(FILES_CHECK)))
-SRC_PSH_SWP = $(addprefix $(SRC_DIR),$(addsuffix .c,$(FILES_PSH_SWP)))
-OBJ_CHECK = $(addprefix $(CCH_DIR),$(addsuffix .o,$(FILES_CHECK)))
-OBJ_PSH_SWP = $(addprefix $(CCH_DIR),$(addsuffix .o,$(FILES_PSH_SWP)))
+CHECK_SRC = $(addprefix $(SRC_DIR),$(addsuffix .c,$(CHECK_FILES)))
+CHECK_OBJ = $(addprefix $(CCH_DIR),$(addsuffix .o,$(CHECK_FILES)))
+PSH_SWP_SRC = $(addprefix $(SRC_DIR),$(addsuffix .c,$(PSH_SWP_FILES)))
+PSH_SWP_OBJ = $(addprefix $(CCH_DIR),$(addsuffix .o,$(PSH_SWP_FILES)))
 
 all: $(CHECKER) $(PUSH_SWAP)
 
-$(CHECKER): $(OBJ_CHECK)
+$(CHECKER): $(CHECK_OBJ)
+	@$(CC) $(FLAGS) -L $(LIB_DIR) -lft -o $@ $(CHECK_OBJ)
 
-$(PUSH_SWAP): $(OBJ_PSH_SWP)
+$(PUSH_SWAP): $(PSH_SWP_OBJ)
 
-$(CCH_DIR_CHECK)%.o: $(SRC_CHECK)%.c | $(CCH_DIR)
+$(CCH_DIR)%.o: $(SRC_DIR)%.c | $(CCH_DIR)
 	$(CC) $(FLAG) -c $< -o $@
-#if .o is older than .c, then do the content
-# $< means the first prerequisite
-# | The names of all the order-only prerequisites, with spaces between them.
-
-$(CCH_DIR_PSH_SWP)%.o: $(SRC_PSH_SWP)%.c | $(CCH_DIR)
-	$(CC) $(FLAG) -c $< -o $@
-#if .o is older than .c, then do the content
-# $< means the first prerequisite
-# | The names of all the order-only prerequisites, with spaces between them.
 
 $(CCH_DIR):
 	mkdir $@
@@ -65,7 +57,7 @@ clean:
 	$(RM) *.out*
 
 fclean: clean
-	$(RM) $(CHECKER) $(PUSH_SWAP)
+	$(RM) $(CHECKER)
 
 re: fclean
 	$(MAKE) all
