@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 #include "common.h"
 #include "checker.h"
 
@@ -27,7 +28,7 @@ int		main(int ac, char **av)
 		write(1, "Error\n", 6);
 		return (0);
 	}
-	(ft_read_actions(av) == (int)STAT_OK) ?
+	(ft_read_actions() == (int)STAT_OK) ?
 		write(1, "OK\n", 3) : write(1, "KO\n", 3);
 	return (0);
 }

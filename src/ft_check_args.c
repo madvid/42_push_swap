@@ -14,15 +14,31 @@
 #include "common.h"
 #include "libft.h"
 
+int		ft_read_actions(char **av)
+{
+	char	*buf;
+	int	stat_arg;
+
+	stat_arg = (int)STAT_OK;
+	while (stat_arg == (int)STAT_OK)
+	{
+		read(0,buf, 4);
+		stat_arg = ft_check_actions(buf);
+	}
+	
+	return((int)STAT_OK);
+}
+
 int		ft_check_args(int nb_arg, char **av)
 {
 	static int	i;
-	int			arg;
+	int		arg;
 
 	while (++i <= nb_arg)
 	{
-		if (ft_isnumber(av[i] == (int)STAT_ERR))
+		if (ft_isnumber(av[i]) == (int)STAT_ERR)
 			return ((int)STAT_ERR);
 	}
 	return((int)STAT_OK);
 }
+
