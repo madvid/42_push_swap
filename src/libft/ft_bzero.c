@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnumber.c                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdavid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 17:30:18 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/02 13:26:33 by mdavid           ###   ########.fr       */
+/*   Created: 2019/04/09 18:57:26 by mdavid            #+#    #+#             */
+/*   Updated: 2019/04/24 18:54:39 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "common.h"
 
-int		ft_isnumber(const char *str)
+void	ft_bzero(void *str, size_t n)
 {
-	int		i;
+	size_t	i;
 
-	i = -1;
-	if (!str)
-		return ((int)STAT_ERR);
-	while (str[++i])
+	i = 0;
+	if (n != 0)
 	{
-		if (ft_isdigit(str[i]) == (int)STAT_ERR)
-			return ((int)STAT_ERR);
+		while (i < n)
+		{
+			((char*)str)[i] = '\0';
+			i++;
+		}
 	}
-	return ((int)STAT_OK);
 }

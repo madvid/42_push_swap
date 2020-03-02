@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnumber.c                                      :+:      :+:    :+:   */
+/*   ftmemalloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdavid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 17:30:18 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/02 13:26:33 by mdavid           ###   ########.fr       */
+/*   Created: 2019/04/15 10:53:03 by mdavid            #+#    #+#             */
+/*   Updated: 2019/04/25 15:58:34 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "common.h"
+#include <stdlib.h>
 
-int		ft_isnumber(const char *str)
+void	*ft_memalloc(size_t n)
 {
-	int		i;
+	void	*tab;
 
-	i = -1;
-	if (!str)
-		return ((int)STAT_ERR);
-	while (str[++i])
-	{
-		if (ft_isdigit(str[i]) == (int)STAT_ERR)
-			return ((int)STAT_ERR);
-	}
-	return ((int)STAT_OK);
+	if (!(tab = malloc(n)))
+		return (NULL);
+	ft_bzero(tab, n);
+	return (tab);
 }

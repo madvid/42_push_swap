@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnumber.c                                      :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdavid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 17:30:18 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/02 13:26:33 by mdavid           ###   ########.fr       */
+/*   Created: 2019/04/15 11:09:44 by mdavid            #+#    #+#             */
+/*   Updated: 2019/04/25 17:54:28 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "common.h"
+#include <stdlib.h>
 
-int		ft_isnumber(const char *str)
+char	*ft_strnew(size_t size)
 {
-	int		i;
+	char	*strnew;
 
-	i = -1;
-	if (!str)
-		return ((int)STAT_ERR);
-	while (str[++i])
-	{
-		if (ft_isdigit(str[i]) == (int)STAT_ERR)
-			return ((int)STAT_ERR);
-	}
-	return ((int)STAT_OK);
+	if (!(strnew = (char*)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	ft_memset(strnew, '\0', size + 1);
+	return (strnew);
 }

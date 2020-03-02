@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnumber.c                                      :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdavid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 17:30:18 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/02 13:26:33 by mdavid           ###   ########.fr       */
+/*   Created: 2019/04/09 13:40:33 by mdavid            #+#    #+#             */
+/*   Updated: 2019/04/24 18:54:17 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "common.h"
 
-int		ft_isnumber(const char *str)
+void	*ft_memset(void *str, int c, size_t len)
 {
-	int		i;
+	size_t			i;
 
-	i = -1;
-	if (!str)
-		return ((int)STAT_ERR);
-	while (str[++i])
+	i = 0;
+	while (i < len)
 	{
-		if (ft_isdigit(str[i]) == (int)STAT_ERR)
-			return ((int)STAT_ERR);
+		((unsigned char*)str)[i] = (unsigned char)c;
+		i++;
 	}
-	return ((int)STAT_OK);
+	return (str);
 }

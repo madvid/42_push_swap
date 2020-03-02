@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: weilin <weilin@student.42.fr>              +#+  +:+       +#+         #
+#    By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/11 16:48:33 by weilin            #+#    #+#              #
-#    Updated: 2020/02/25 18:49:59 by weilin           ###   ########.fr        #
+#    Updated: 2020/03/02 13:37:04 by mdavid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ CHECKER = checker
 PUSH_SWAP = push_swap
 
 LIB_DIR = libft/
-LIB_FILES = ft_atoi ft_isdigit ft_isnumber \
+LIB_FILES = ft_atoi ft_isdigit ft_isnumber ft_strcmp ft_memalloc ft_strnew \
+			ft_bzero ft_memset
 
 CHECK_FILES = checker ft_check_args
 PSH_SWP_FILES = push_swap
@@ -22,8 +23,7 @@ PSH_SWP_FILES = push_swap
 CHECK_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))
 PSH_SWP_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))
 
-#CC = gcc
-CC = clang
+CC = gcc
 FLAG = -Wall -Wextra -Werror -g -I $(INC_DIR)
 
 RM = rm -rf
@@ -40,9 +40,10 @@ PSH_SWP_OBJ = $(addprefix $(CCH_DIR),$(addsuffix .o,$(PSH_SWP_FILES)))
 all: $(CHECKER) $(PUSH_SWAP)
 
 $(CHECKER): $(CHECK_OBJ)
-	@$(CC) $(FLAGS) -L $(LIB_DIR) -lft -o $@ $(CHECK_OBJ)
+	@$(CC) $(FLAGS) -o $@ $(CHECK_OBJ)
 
 $(PUSH_SWAP): $(PSH_SWP_OBJ)
+	@$(CC) $(FLAGS) -o $@ $(PSH_SWP_OBJ)
 
 $(CCH_DIR)%.o: $(SRC_DIR)%.c | $(CCH_DIR)
 	$(CC) $(FLAG) -c $< -o $@
