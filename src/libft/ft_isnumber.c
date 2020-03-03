@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:30:18 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/02 17:06:13 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/03 20:55:52 by weilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int		ft_isnumber(const char *str)
 {
 	int		i;
 
-	i = -1;
+	i = 0;
 	if (!str)
 		return ((int)STAT_ERR);
-	if (str[++i] == '+' || str[++i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i])
 	{
