@@ -6,13 +6,13 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:11 by mdavid            #+#    #+#             */
-/*   Updated: 2020/02/29 14:02:53 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:36:14 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# ifndef COMMON_H
-#  define COMMON_H
-#  include "common.h"
+
+
+
 # endif

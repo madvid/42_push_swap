@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:02:59 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/02 13:23:07 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:35:31 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,7 @@ typedef enum	e_stat
 	STAT_ERR,
 	STAT_OK
 }				t_stat;
+
+int		ft_check_args(int nb_arg, char **av);
+
 #endif
