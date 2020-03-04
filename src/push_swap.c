@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/03 20:56:40 by weilin           ###   ########.fr       */
+/*   Updated: 2020/03/04 19:14:25 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
 #include "common.h"
+
 
 /*
 ** Function: ft_stock_nb
@@ -26,88 +27,62 @@
 **	int *tab: a table of int.
 */
 
-int		*ft_stock_nb(int n, char **av)
+/*int		*ft_stock_nb(int n, char **av)
 {
 
-}
+}*/
+
 
 int		main(int ac, char **av)
-{	int		*tab;
-	
-	if (ft_check_args(ac, av) == (int)STAT_ERR)
-		return (0);
-	
-	tab = ft_stock_nb(ac - 1, av);
-	
-	return (0);
-}
-
-void pt_tpp(t_pp *add)
 {
-	size_t i = add->start;
+	int		i = 0;
+	int		total;
+	int		*stack0;
+	t_pp	data1;
+	t_pp	data2;
 
-	size_t lentmp = add->len;
+	if (!ft_check_args(ac, av))
+		return (0);
 
-	printf("total stack_pp len=%zu\n", add->len);
-	printf("stack_pp starts at stack[%d]\n", add->start);
+	total = ac - 1;
+	stack0 = (int*)malloc(sizeof(int) * (total));
 
-	while (lentmp)
+	data1.t_len = total;
+	data1.len = total;
+	data2.t_len = total;
+	data2.len = 0;
+	data1.stack = (int**)malloc(sizeof(int*) * (total));
+	data2.stack = (int**)malloc(sizeof(int*) * (total));
+	while (i < total)
 	{
-		if (add->len - i < 1)
-			i -= add->len;
-		printf("stack_pp[%zu]=%d\n", add->len - lentmp, *add->pp[i]);
-		lentmp--;
+		stack0[i] = ft_atoi(av[i + 1]);
+		data1.stack[i] = &stack0[i];
+		data2.stack[i] = NULL;
 		i++;
 	}
+
+	// data1.head = (void*)&data1.stack[0];
+	// data1.tail = (void*)&data1.stack[total];
+	// data2.head = (void*)&data2.stack[0];
+	// data2.tail = (void*)&data2.stack[total];
+
+	// printf("&d1.head = %p\n", data1.head);
+	// printf("&d1.queue = %p\n", data1.queue);
+	// printf("&d2.head = %p\n", data2.head);
+	// printf("&d2.queue = %p\n", data2.queue);
+	
+	pp_print_2stack_full(data1, data2);
+	ft_rr_a(&data1);
+	pp_print_2stack_full(data1, data2);
+	ft_rr_a(&data1);
+	pp_print_2stack_full(data1, data2);
+	ft_rr_a(&data1);
+	pp_print_2stack_full(data1, data2);
+	ft_rr_a(&data1);
+	pp_print_2stack_full(data1, data2);
+	// special_swap(&data1, &data2, 3, 1);
+
 }
-
-int main2(int ac, char **av)
-{
-	int control = 1;
-
-	if (ac < 2)
-	{
-		control += write(1, "EMPTY\n", 6);
-		printf("control=%d\n", control);
-	}
-	// printf("ac=%d\n",ac);
-
-	if (!ft_check_args(ac - 1, av))
-	{
-		control += write(1, "Error\n", 6);
-		printf("ft_check_args=%d\n", ft_check_args(ac - 1, av));
-		printf("control=%d\n", control);
-	}
-	if (control != 1)
-		return (0);
-
-	int total = ac - 1;
-	int *stack = (int *)malloc(sizeof(int) * (total));
-	t_pp a;
-
-	a.start = 0;
-	a.pp = (int **)malloc(sizeof(int *) * (total));
-	a.len = total;
-	// int **pb=(int*)malloc(sizeof(int*)*(total));
-
-	if (control == 1)
-	{
-		while (total > 0)
-		{
-			stack[total - 1] = atoi(av[total]);
-			a.pp[total - 1] = &stack[total - 1];
-			total--;
-		}
-	}
-	printf("total num=%d\n", ac - 1);
-	while (total < ac - 1)
-	{
-		printf("stack[%d]=%d\n", total, stack[total]);
-		total++;
-	}
-	a.start = (total > 1) ? 1 : 0;
-	pt_tpp(&a);
-	// printf("sizeof(int)=%lu\n",sizeof(int));=4
-	// printf("sizeof(int*)=%lu\n",sizeof(int*));=8
-	// printf("sizeof(size_t)=%lu\n",sizeof(size_t));=8
-}
+	//printf("sizeof(int)=%lu\n",sizeof(int));// = 4
+	//printf("sizeof(int*)=%lu\n",sizeof(int*));// = 8
+	//printf("sizeof(size_t)=%lu\n",sizeof(size_t));// = 8

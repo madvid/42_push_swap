@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:10:55 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/03 15:34:31 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/04 17:22:57 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 
 int		ft_check_args(int ac, char **av)
 {
-	static int	i;
+	int	i;
 
+    i = 0;
 	if (ac < 2)
 	{
 		write(1, "Empty list of arguments.\n", 25);
@@ -31,5 +32,10 @@ int		ft_check_args(int ac, char **av)
 			return ((int)STAT_ERR);
 		}
 	}
+	if (ac == 2)
+    {
+		write(1, "OK\n", 3);
+		return ((int)STAT_ERR);
+    }
 	return ((int)STAT_OK);
 }

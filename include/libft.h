@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 13:11:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/03 20:57:49 by weilin           ###   ########.fr       */
+/*   Updated: 2020/03/04 10:49:34 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
-int					ft_isnumber(const char *str);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
@@ -104,4 +103,13 @@ char				*ft_strdup_1sp(const char *s);
 char				*ft_strdup_p(const char *s);
 char				*ft_strtrunc_x(char *s, size_t x);
 int					ft_strdupfree(char **dest, char **src);
+/*
+** Fonctions extra post project
+*/
+int					ft_isnumber(const char *str);
+int					**ft_table_int(int nb_l, int nb_c);
+void				ft_table_int_init(int **table, int nb_l, int nb_c);
+void				ft_free_tabint(int **table, int nb_l);
+int					**ft_int_tab_dup(int **i_tab, int nb_pt);
+
 #endif
