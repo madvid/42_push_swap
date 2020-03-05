@@ -6,12 +6,10 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:21 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/03 15:28:43 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/05 13:06:58 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include "checker.h"
 #include "common.h"

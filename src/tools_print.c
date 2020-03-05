@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:19:31 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/04 18:38:16 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/05 16:17:29 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ void	pp_print_1stack_full(t_pp data)
 	while (j < data.len)
 	{
 		if (data.stack[j] == NULL)
-			printf("[Cell adress]|[content][*content]: [%p]|[%p]|[%s]\n", &(data.stack[j]), data.stack[j], "null");
+			printf("[Cell adress]|[content][*content]: [14%p]|[14%p]|[%s]\n", &(data.stack[j]), data.stack[j], "null");
 		else
-			printf("[Cell adress]|[content][*content]: [%p]|[%p]|[%d]\n", &(data.stack[j]), data.stack[j], *data.stack[j]);
+			printf("[Cell adress]|[content][*content]: [14%p]|[14%p]|[%4d]\n", &(data.stack[j]), data.stack[j], *data.stack[j]);
 		j++;
 	}
 	printf("---------------------------------------------------------------------------\n\n");

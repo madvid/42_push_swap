@@ -6,12 +6,18 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:45:42 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/04 19:14:05 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/04 20:02:14 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
+
+/*
+** FUNCTION: ft_rotate
+** ARGUMENTS:	t_pp *data
+** DESCRIPTION:
+** 	Rotate all the elements up of the stack in data.
+*/
 
 void	ft_rotate(t_pp *data)
 {
@@ -28,55 +34,47 @@ void	ft_rotate(t_pp *data)
 	data->stack[i] = tmp;
 }
 
-void	ft_r_a(t_pp *dataA)
+/*
+** FUNCTION: ft_r_a
+** ARGUMENTS:	t_pp *data1
+** DESCRIPTION:
+** 	Rotate all the elements up into the stack in data1 (via ft_rotate).
+** 	Then it print 'ra'.
+*/
+
+void	ft_r_a(t_pp *data1)
 {
-	ft_rotate(dataA);
+	ft_rotate(data1);
 	write(1,"ra\n", 3);
 }
 
-void	ft_r_b(t_pp *dataB)
+/*
+** FUNCTION: ft_r_b
+** ARGUMENTS:	t_pp *data2
+** DESCRIPTION:
+** 	Rotate all the elements up into the stack in data2 up (via ft_rotate).
+** 	Then it print 'rb'.
+*/
+
+void	ft_r_b(t_pp *data2)
 {
-	ft_rotate(dataB);
+	ft_rotate(data2);
 	write(1,"rb\n", 3);
 }
 
-void	ft_rr(t_pp *dataA, t_pp *dataB)
+/*
+** FUNCTION: ft_rr
+** ARGUMENTS:	t_pp *data1
+** 				t_pp *data2
+** DESCRIPTION:
+** 	Rotate all the elements up into the stack in data1 and stack in data2
+** 	(via ft_rotate).
+** 	Then it print 'rr'.
+*/
+
+void	ft_rr(t_pp *data1, t_pp *data2)
 {
-	ft_rotate(dataB);
-	ft_rotate(dataA);
+	ft_rotate(data2);
+	ft_rotate(data1);
 	write(1,"rr\n", 3);
-}
-
-void	ft_rev_rotate(t_pp *data)
-{
-	int			*tmp;
-	size_t		i;
-
-	i = data->t_len;
-	tmp = data->stack[data->t_len - 1];
-	while (i > data->t_len - data->len)
-	{
-		data->stack[i] = data->stack[i - 1];
-		i--;
-	}
-	data->stack[i] = tmp;
-}
-
-void	ft_rr_a(t_pp *dataA)
-{
-	ft_rev_rotate(dataA);
-	write(1,"rra\n", 4);
-}
-
-void	ft_rr_b(t_pp *dataB)
-{
-	ft_rev_rotate(dataB);
-	write(1,"rrb\n", 4);
-}
-
-void	ft_rrr(t_pp *dataA, t_pp *dataB)
-{
-	ft_rev_rotate(dataB);
-	ft_rev_rotate(dataA);
-	write(1,"rrr\n", 4);
 }

@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:31:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/04 17:03:51 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/04 20:12:42 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,56 @@ void	special_swap(t_pp *data1, t_pp *data2, int i, int j)
 ** FUNCTION: ft_swap
 ** ARGUMENTS:	t_pp *data
 ** DESCRIPTION:
-** 	...
-** RETURN: None.
+** 	Swap 1st and 2nd elements (in regard to the top) of data.stack if possible.
+** RETURN:
+** 	0 if the swap is not performed.
+** 	1 if the swap is performed.
 */
 
-void	ft_swap(t_pp *data)
+int		ft_swap(t_pp *data)
 {
 	int		*tmp_addr;
 	int		top;
 
 	top = data->t_len - data->len;
 	if (data->len <= 1)
-		return;
+		return (0);
 	else
 	{
 		tmp_addr = data->stack[top];
 		data->stack[top] = data->stack[top + 1];
 		data->stack[top + 1] = tmp_addr;
+		return (1);
 	}
+	return (0);
+}
+
+/*
+** FUNCTION: ft_s_a
+** ARGUMENTS:	t_pp *data1
+** DESCRIPTION:
+** 	Swap 1st and 2nd elements of data1.stack (via ft_swap) if possible.
+** 	Then it print 'sa'.
+** RETURN: None.
+*/
+
+void	ft_s_a(t_pp *data1)
+{
+	ft_swap(data1) ? write(1,"sa\n", 3) : 0;
+}
+
+/*
+** FUNCTION: ft_s_b
+** ARGUMENTS:	t_pp *data2
+** DESCRIPTION:
+** 	Swap 1st and 2nd elements of data2.stack (via ft_swap) if possible.
+** 	Then it print 'sa'.
+** RETURN: None.
+*/
+
+void	ft_s_b(t_pp *data2)
+{
+	ft_swap(data2) ? write(1,"sb\n", 3) : 0;
 }
 
 /*

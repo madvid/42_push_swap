@@ -6,14 +6,15 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/04 19:14:25 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/05 19:02:47 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "push_swap.h"
 #include "common.h"
-
+#include "libft.h"
 
 /*
 ** Function: ft_stock_nb
@@ -61,6 +62,10 @@ int		main(int ac, char **av)
 		i++;
 	}
 
+	// pp_print_1stack_full(data1);
+	
+	// pp_print_1stack_full(data1);
+
 	// data1.head = (void*)&data1.stack[0];
 	// data1.tail = (void*)&data1.stack[total];
 	// data2.head = (void*)&data2.stack[0];
@@ -72,14 +77,16 @@ int		main(int ac, char **av)
 	// printf("&d2.queue = %p\n", data2.queue);
 	
 	pp_print_2stack_full(data1, data2);
-	ft_rr_a(&data1);
+	ft_p_b(&data1, &data2);
+	ft_p_b(&data1, &data2);
 	pp_print_2stack_full(data1, data2);
-	ft_rr_a(&data1);
-	pp_print_2stack_full(data1, data2);
-	ft_rr_a(&data1);
-	pp_print_2stack_full(data1, data2);
-	ft_rr_a(&data1);
-	pp_print_2stack_full(data1, data2);
+	ft_stack_split(&data1);
+	// ft_rr_a(&data1);
+	// pp_print_2stack_full(data1, data2);
+	// ft_rr_a(&data1);
+	// pp_print_2stack_full(data1, data2);
+	// ft_rr_a(&data1);
+	// pp_print_2stack_full(data1, data2);
 	// special_swap(&data1, &data2, 3, 1);
 
 }
