@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:05:07 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/05 18:02:18 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/09 13:13:19 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ft_push(t_pp *d_orig, t_pp *d_dest)
 		dst = d_dest->t_len - d_dest->len - 1;
 		d_dest->stack[dst] = d_orig->stack[ori];
 		d_orig->stack[ori] = NULL;
+		d_orig->start -= 1;
+		d_dest->start += 1;
 		d_orig->len -= 1;
 		d_dest->len += 1;
 		return 1;

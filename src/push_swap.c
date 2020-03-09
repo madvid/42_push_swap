@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/05 19:02:47 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/09 19:18:26 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,22 @@ int		main(int ac, char **av)
 
 	data1.t_len = total;
 	data1.len = total;
+	data1.start = 0;
 	data2.t_len = total;
 	data2.len = 0;
+	data2.start = total;
 	data1.stack = (int**)malloc(sizeof(int*) * (total));
 	data2.stack = (int**)malloc(sizeof(int*) * (total));
 	while (i < total)
 	{
 		stack0[i] = ft_atoi(av[i + 1]);
 		data1.stack[i] = &stack0[i];
-		data2.stack[i] = NULL;
+		data2.stack[i] = &stack0[i];
 		i++;
 	}
 
+	sort_data(&data2, 0, total - 1);
+	rank_sorting_score(&data1, &data2);
 	// pp_print_1stack_full(data1);
 	
 	// pp_print_1stack_full(data1);
@@ -76,11 +80,11 @@ int		main(int ac, char **av)
 	// printf("&d2.head = %p\n", data2.head);
 	// printf("&d2.queue = %p\n", data2.queue);
 	
-	pp_print_2stack_full(data1, data2);
-	ft_p_b(&data1, &data2);
-	ft_p_b(&data1, &data2);
-	pp_print_2stack_full(data1, data2);
-	ft_stack_split(&data1);
+	// pp_print_2stack_full(data1, data2);
+	// ft_p_b(&data1, &data2);
+	// ft_p_b(&data1, &data2);
+	// pp_print_2stack_full(data1, data2);
+	// ft_stack_split(&data1);
 	// ft_rr_a(&data1);
 	// pp_print_2stack_full(data1, data2);
 	// ft_rr_a(&data1);

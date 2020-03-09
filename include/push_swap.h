@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:11 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/05 19:00:01 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/09 19:13:52 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef	struct	s_pp
 {
 	size_t		len;
 	size_t		t_len;
+	size_t		start;
 	int			**stack;
 }				t_pp;
 
@@ -64,5 +65,11 @@ void	bubble_sort_simple(t_pp *data1);
 */
 void	ft_stack_split(t_pp *data);
 
+/*
+** temporary
+*/
+void		sort_data(t_pp *data, int left, int right);
+int		permute(t_pp *data, int left, int right, int pivot);
+void	rank_sorting_score(t_pp *data1, t_pp *data2);
 
 # endif
