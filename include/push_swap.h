@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:11 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/09 19:13:52 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/11 21:37:53 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 # define PUSH_SWAP_H
 
 # include <unistd.h>
+// del
+# include <stdio.h>
+// del
+
+typedef	struct	s_info
+{
+	size_t		tot_len;
+	size_t		len;
+	size_t		start;
+}				t_info;
 
 typedef	struct	s_pp
 {
-	size_t		len;
-	size_t		t_len;
-	size_t		start;
+	size_t		permanent_len;
 	int			**stack;
 }				t_pp;
 
@@ -48,28 +56,31 @@ void	ft_rrr(t_pp *data1, t_pp *data2);
 ** functions for printing table of *int
 ** File(s): tools_print.c
 */
-void	pp_print_addr(t_pp data);
-void	pp_print_2stack_full(t_pp data1, t_pp data2);
-void	pp_print_1stack_full(t_pp data);
-void	pp_print_stack(t_pp data);
+void	pp_print_addr(t_pp data, t_info info);
+void	pp_print_2stack_full(t_pp data1, t_pp data2, t_info info1, t_info info2);
+void	pp_print_1stack_full(t_pp data, t_info info);
+void	pp_print_stack(t_pp data, t_info info);
 
 /*
 ** functions for sort the table of *int
 ** File(s): bubble_sorts.c
 */
-int		ft_issort(t_pp *data1);
+int		ft_issort(t_pp *data1, t_info *info1);
 void	bubble_sort_simple(t_pp *data1);
+
+void	quicksort(int **sort_lst, int index_left, int index_right);
+int		permute(int **sort_lst, int left, int right, int pivot);
+
+void	quicksort_2stacks(t_pp *data1, t_pp *data2);
 
 /*
 ** Others functions
 */
-void	ft_stack_split(t_pp *data);
+void	ft_stack_split(t_pp *data1, t_pp *data2, t_info info1, t_info info2, int (*ft_order)(int, int));
 
 /*
 ** temporary
 */
-void		sort_data(t_pp *data, int left, int right);
-int		permute(t_pp *data, int left, int right, int pivot);
-void	rank_sorting_score(t_pp *data1, t_pp *data2);
+void	ft_print_intab(int *table, int nb_elem);
 
 # endif

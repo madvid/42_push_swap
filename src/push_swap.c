@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/09 19:18:26 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/11 21:40:33 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,48 +39,50 @@ int		main(int ac, char **av)
 	int		i = 0;
 	int		total;
 	int		*stack0;
+	int		*sorted_list;
 	t_pp	data1;
 	t_pp	data2;
+	t_info	info1;
+	t_info	info2;
 
 	if (!ft_check_args(ac, av))
 		return (0);
 
 	total = ac - 1;
 	stack0 = (int*)malloc(sizeof(int) * (total));
-
-	data1.t_len = total;
-	data1.len = total;
-	data1.start = 0;
-	data2.t_len = total;
-	data2.len = 0;
-	data2.start = total;
+	sorted_list = (int*)malloc(sizeof(int) * (total));
+	data1.permanent_len = total;
+	data2.permanent_len = total;
 	data1.stack = (int**)malloc(sizeof(int*) * (total));
 	data2.stack = (int**)malloc(sizeof(int*) * (total));
+	info1.tot_len = total;
+	info2.tot_len = total;
+	info1.len = total;
+	info2.len = total;
+	info1.start = 0;
+	info2.start = total - 1;
 	while (i < total)
 	{
 		stack0[i] = ft_atoi(av[i + 1]);
+		sorted_list[i] = ft_atoi(av[i + 1]);
 		data1.stack[i] = &stack0[i];
-		data2.stack[i] = &stack0[i];
+		data2.stack[i] = NULL;
 		i++;
 	}
 
-	sort_data(&data2, 0, total - 1);
-	rank_sorting_score(&data1, &data2);
-	// pp_print_1stack_full(data1);
+	quicksort(&sorted_list, 0, total - 1);
+	ft_print_intab(sorted_list, total - 1);
+	//quicksort_2stacks(&data1, &data2);
+	pp_print_1stack_full(data1, info1);
 	
 	// pp_print_1stack_full(data1);
-
-	// data1.head = (void*)&data1.stack[0];
-	// data1.tail = (void*)&data1.stack[total];
-	// data2.head = (void*)&data2.stack[0];
-	// data2.tail = (void*)&data2.stack[total];
 
 	// printf("&d1.head = %p\n", data1.head);
 	// printf("&d1.queue = %p\n", data1.queue);
 	// printf("&d2.head = %p\n", data2.head);
 	// printf("&d2.queue = %p\n", data2.queue);
 	
-	// pp_print_2stack_full(data1, data2);
+	pp_print_2stack_full(data1, data2, info1, info2);
 	// ft_p_b(&data1, &data2);
 	// ft_p_b(&data1, &data2);
 	// pp_print_2stack_full(data1, data2);

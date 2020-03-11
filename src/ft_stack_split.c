@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:25:00 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/05 19:06:09 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/11 21:43:43 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 
 /*
 ** FUNCTION: ft_stack_split
-** ARGUMENTS: t_pp *data: a stack with it informations
+** PARAMETERS:	t_pp *orig: data struct containing stack and more info.
+**				t_pp *dest: data struct containing stack and more info.
+**				int *ft_order: order function, return 0 or 1.
 ** DESCRIPTION:
-** 	Split virtually the stack in half using pointers on specific address
+** 	Split the orig->stack and put a part into dest->stack according to the
+** 	order function
 ** 	within the stack.
 */
 
-void	ft_stack_split(t_pp *data)
+void	ft_stack_split(t_pp *data1, t_pp *data2, t_info info1 , t_info info2,
+	int (*ft_order)(int, int))
 {
 	int		**start1;
 	int		**start2;
@@ -29,9 +33,9 @@ void	ft_stack_split(t_pp *data)
 	int		**end2;
 	size_t	half;
 
-	if (data->t_len <= 1 || data->len <= 1)
+	if (info1.tot_len < 2 || (info1.len + info2.len > info2.tot_len))
 		return ;
-	half = data->t_len - (data->len / 2);
+	half = info1.tot_len - (info1.len / 2);
 	start1 = &(data->stack[data->t_len - data->len]);
 	end2 = &(data->stack[data->t_len]);
 	if ((data->len % 2) == 0)
@@ -44,6 +48,4 @@ void	ft_stack_split(t_pp *data)
 		start2 = &(data->stack[half + 1]);
 		end1 = &(data->stack[half]);
 	}
-	// printf("start1 = %p\nend1 =   %p\n", start1, end1);
-	// printf("start2 = %p\nend2 =   %p\n", start2, end2);
 }
