@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:05:07 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/09 13:13:19 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 13:33:45 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,18 @@
 ** RETURN: None.
 */
 
-int	ft_push(t_pp *d_orig, t_pp *d_dest)
+int	ft_push(t_pp *d_orig, t_pp *d_dest, t_info *iorig, t_info *idest)
 {
-	int	ori;
-	int	dst;
-
-	if (d_orig->len == 0)
+	if (iorig->len == 0)
 		return 0;
 	else
 	{
-		
-		ori = d_orig->t_len - d_orig->len;
-		dst = d_dest->t_len - d_dest->len - 1;
-		d_dest->stack[dst] = d_orig->stack[ori];
-		d_orig->stack[ori] = NULL;
-		d_orig->start -= 1;
-		d_dest->start += 1;
-		d_orig->len -= 1;
-		d_dest->len += 1;
+		d_dest->stack[idest->start - 1] = d_orig->stack[iorig->start];
+		d_orig->stack[iorig->start] = NULL;
+		iorig->start += 1;
+		idest->start -= 1;
+		iorig->len -= 1;
+		idest->len += 1;
 		return 1;
 	}
 }
@@ -53,9 +47,9 @@ int	ft_push(t_pp *d_orig, t_pp *d_dest)
 ** 	Then it print 'pa'.
 */
 
-void	ft_p_a(t_pp *data1, t_pp *data2)
+void	ft_p_a(t_pp *data1, t_pp *data2, t_info *info1, t_info *info2)
 {
-	ft_push(data2, data1) ? write(1,"pa\n", 3) : 0;
+	ft_push(data2, data1, info2, info1) ? write(1,"pa\n", 3) : 0;
 }
 
 /*
@@ -67,7 +61,7 @@ void	ft_p_a(t_pp *data1, t_pp *data2)
 ** 	Then it print 'pb'.
 */
 
-void	ft_p_b(t_pp *data1, t_pp *data2)
+void	ft_p_b(t_pp *data1, t_pp *data2, t_info *info1, t_info *info2)
 {
-	ft_push(data1, data2) ? write(1,"pb\n", 3) : 0;
+	ft_push(data1, data2, info1, info2) ? write(1,"pb\n", 3) : 0;
 }

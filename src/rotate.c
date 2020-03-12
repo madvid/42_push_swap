@@ -6,11 +6,13 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:45:42 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/04 20:02:14 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 14:08:08 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "push_swap.h"
+
 
 /*
 ** FUNCTION: ft_rotate
@@ -19,14 +21,14 @@
 ** 	Rotate all the elements up of the stack in data.
 */
 
-void	ft_rotate(t_pp *data)
+void	ft_rotate(t_pp *data, t_info info)
 {
 	int			*tmp;
 	size_t		i;
 
-	i = data->t_len - data->len;
+	i = info.start;
 	tmp = data->stack[i];
-	while (i + 1 < data->t_len)
+	while (i + 1 < info.tot_len)
 	{
 		data->stack[i] = data->stack[i + 1];
 		i++;
@@ -42,9 +44,9 @@ void	ft_rotate(t_pp *data)
 ** 	Then it print 'ra'.
 */
 
-void	ft_r_a(t_pp *data1)
+void	ft_r_a(t_pp *data1, t_info info1)
 {
-	ft_rotate(data1);
+	ft_rotate(data1, info1);
 	write(1,"ra\n", 3);
 }
 
@@ -56,9 +58,9 @@ void	ft_r_a(t_pp *data1)
 ** 	Then it print 'rb'.
 */
 
-void	ft_r_b(t_pp *data2)
+void	ft_r_b(t_pp *data2, t_info info2)
 {
-	ft_rotate(data2);
+	ft_rotate(data2, info2);
 	write(1,"rb\n", 3);
 }
 
@@ -72,9 +74,9 @@ void	ft_r_b(t_pp *data2)
 ** 	Then it print 'rr'.
 */
 
-void	ft_rr(t_pp *data1, t_pp *data2)
+void	ft_rr(t_pp *data1, t_pp *data2, t_info info1, t_info info2)
 {
-	ft_rotate(data2);
-	ft_rotate(data1);
+	ft_rotate(data2, info2);
+	ft_rotate(data1, info1);
 	write(1,"rr\n", 3);
 }

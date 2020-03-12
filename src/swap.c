@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:31:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/04 20:12:42 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 12:03:40 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	special_swap(t_pp *data1, t_pp *data2, int i, int j)
 ** 	1 if the swap is performed.
 */
 
-int		ft_swap(t_pp *data)
+int		ft_swap(t_pp *data, t_info info)
 {
 	int		*tmp_addr;
 	int		top;
 
-	top = data->t_len - data->len;
-	if (data->len <= 1)
+	top = info.start;
+	if (info.start <= 1)
 		return (0);
 	else
 	{
@@ -70,9 +70,9 @@ int		ft_swap(t_pp *data)
 ** RETURN: None.
 */
 
-void	ft_s_a(t_pp *data1)
+void	ft_s_a(t_pp *data1, t_info info1)
 {
-	ft_swap(data1) ? write(1,"sa\n", 3) : 0;
+	ft_swap(data1, info1) ? write(1,"sa\n", 3) : 0;
 }
 
 /*
@@ -84,9 +84,9 @@ void	ft_s_a(t_pp *data1)
 ** RETURN: None.
 */
 
-void	ft_s_b(t_pp *data2)
+void	ft_s_b(t_pp *data2, t_info info2)
 {
-	ft_swap(data2) ? write(1,"sb\n", 3) : 0;
+	ft_swap(data2, info2) ? write(1,"sb\n", 3) : 0;
 }
 
 /*
@@ -97,8 +97,8 @@ void	ft_s_b(t_pp *data2)
 ** RETURN: None.
 */
 
-void	ft_swap_ss(t_pp *data1, t_pp *data2)
+void	ft_swap_ss(t_pp *data1, t_pp *data2, t_info info1, t_info info2)
 {
-	ft_swap(data1);
-	ft_swap(data2);
+	ft_swap(data1, info1);
+	ft_swap(data2, info2);
 }

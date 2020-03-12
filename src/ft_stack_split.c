@@ -6,15 +6,14 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:25:00 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/11 21:43:43 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 17:10:26 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
 
 /*
-** FUNCTION: ft_stack_split
+** FUNCTION: ft_stack_split2b
 ** PARAMETERS:	t_pp *orig: data struct containing stack and more info.
 **				t_pp *dest: data struct containing stack and more info.
 **				int *ft_order: order function, return 0 or 1.
@@ -24,28 +23,67 @@
 ** 	within the stack.
 */
 
-void	ft_stack_split(t_pp *data1, t_pp *data2, t_info info1 , t_info info2,
-	int (*ft_order)(int, int))
+void	ft_stck_splt2b(t_pp *d_a, t_pp *d_b, t_info *info_a, t_info *info_b,
+	int (*ft_order)(int*, int**, size_t))
 {
-	int		**start1;
-	int		**start2;
-	int		**end1;
-	int		**end2;
-	size_t	half;
+	int			order;
+	size_t		nb_elem;
+	size_t		count;
+	size_t		count_pb;
 
-	if (info1.tot_len < 2 || (info1.len + info2.len > info2.tot_len))
-		return ;
-	half = info1.tot_len - (info1.len / 2);
-	start1 = &(data->stack[data->t_len - data->len]);
-	end2 = &(data->stack[data->t_len]);
-	if ((data->len % 2) == 0)
+	count_pb = 0;
+	count = 0;
+	nb_elem = info_a->len;
+	ft_order(&order, d_a->stack, info_a->len);
+	while (count < nb_elem + 1)
 	{
-		start2 = &(data->stack[half]);
-		end1 = &(data->stack[half - 1]);
+		if (*d_a->stack[info_a->start] < order)
+		{
+			ft_p_b(d_a, d_b, info_a, info_b);
+			count_pb++;
+		}
+		else
+		{
+			ft_r_a(d_a, *info_a);
+		}
+		count++;
 	}
-	else
+	info_b->len = count_pb;
+}
+
+/*
+** FUNCTION: ft_stack_split2b
+** PARAMETERS:	t_pp *orig: data struct containing stack and more info.
+**				t_pp *dest: data struct containing stack and more info.
+**				int *ft_order: order function, return 0 or 1.
+** DESCRIPTION:
+** 	Split the orig->stack and put a part into dest->stack according to the
+** 	order function
+** 	within the stack.
+*/
+
+void	ft_stck_splt2a(t_pp *d_a, t_pp *d_b, t_info *info_a, t_info *info_b,
+	int (*ft_order)(int*, int**, size_t))
+{
+	int			order;
+	size_t		nb_elem;
+	size_t		count;
+	size_t		count_pa;
+
+	count_pa = 0;
+	count = 0;
+	nb_elem = info_b->len;
+	ft_order(&order, d_b->stack, info_b->len);
+	while (count < info_b->len + 1)
 	{
-		start2 = &(data->stack[half + 1]);
-		end1 = &(data->stack[half]);
+		if (*d_b->stack[info_b->start] > order)
+		{
+			ft_p_a(d_a, d_b, info_a, info_b);
+			count_pa++;
+		}
+		else
+			ft_r_b(d_b, *info_b);
+		count++;
 	}
+	info_a->len = count_pa;
 }

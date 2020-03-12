@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:15:13 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/11 19:03:16 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 17:24:33 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,19 @@ int		ft_get_median(int *median, int **stack, size_t nb_elem)
 **		RIEN.
 */
 
-void	quicksort_2stacks(t_pp *data)
-{
-	int		median;
-
-	median = 0;
-	ft_get_average(&median, data->stackB, data->lenB);
-	printf("valeur de la mediane: %d\n", median);
-	//ft_stack_split();
+void	quicksort_2stacks(t_pp *data1, t_pp *data2, t_info info1, t_info info2, int a_or_b)
+{	
+	pp_print_2stack_full(*data1, *data2, info1, info2);
+	if (info1.len > 2 && a_or_b == 1)
+	{
+		pp_print_2_info(info1, info2);
+		ft_stck_splt2b(data1, data2, &info1, &info2, ft_get_median);
+		quicksort_2stacks(data1, data2, info1, info2, 0);
+	}
+	if (info2.len > 2 && a_or_b == 0)
+	{
+		pp_print_2_info(info1, info2);
+		ft_stck_splt2a(data1, data2, &info1, &info2, ft_get_median);
+		quicksort_2stacks(data1, data2, info1, info2, 1);
+	}
 }

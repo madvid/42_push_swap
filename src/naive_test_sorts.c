@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:57:31 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/11 21:25:26 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 12:20:56 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,22 @@ void	insertion_sort_naive(t_pp *data1, t_pp *data2, t_info *info1, t_info *info2
 {
 	size_t		compt;
 	size_t		pos;
-	size_t		start2;
 
 	compt = 0;
 	pos = 0;
 	if (*data1->stack[0] > *data1->stack[1])
-		ft_p_b(data1, data2);
-	ft_r_a(data1);
+		ft_p_b(data1, data2, info1, info2);
+	ft_r_a(data1, *info1);
 	while (ft_issort(data1, *info1) == 0)
 	{
 		if (*data1->stack[info1->tot_len] > *data2->stack[info2->start])
-			ft_p_a(data1, data2);
+			ft_p_a(data1, data2, info1, info2);
 		if (ft_issort(data1, *info1) == 1)
 			return;
-		ft_r_a(data1);
+		ft_r_a(data1, *info1);
 		compt++;
 		pos++;
-		pp_print_1stack_full(*data1);
+		pp_print_1stack_full(*data1, *info1);
 	}
 	printf("retour de issort = %d\n", ft_issort(data1, *info1));
 }

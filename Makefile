@@ -6,7 +6,7 @@
 #    By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/11 16:48:33 by weilin            #+#    #+#              #
-#    Updated: 2020/03/05 19:03:04 by mdavid           ###   ########.fr        #
+#    Updated: 2020/03/12 14:45:45 by mdavid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,13 @@ SRC_DIR = src/
 INC_DIR = include/
 
 LIB_FILES = ft_atoi ft_isdigit ft_isnumber ft_strcmp ft_memalloc ft_strnew \
-			ft_bzero ft_memset ft_table_int int_tab_dup 
+			ft_bzero ft_memset ft_table_int int_tab_dup ft_putnbr ft_putstr \
+			ft_putchar
 
-COMMON_FILES = tools_print ft_check_args ft_stack_split
+COMMON_FILES = tools_print ft_check_args tools_intab
 CHECK_FILES = checker init_tab_actions check_actions
-PSH_SWP_FILES = push_swap swap push rotate rev_rotate naive_test_sorts
+PSH_SWP_FILES = push_swap swap push rotate rev_rotate naive_test_sorts quicksort \
+				quicksort_2stacks ft_stack_split
 
 CHECK_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))
 PSH_SWP_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))

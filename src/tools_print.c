@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:19:31 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/11 21:35:28 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 17:27:22 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,23 @@ void	pp_print_stack(t_pp data, t_info info)
 		i++;
 		countdown--;
 	}
+}
+
+/*
+** FUNCTION:	pp_print_2_info
+** PARAMETERS:	t_info info1:
+**				t_info info2:
+** DESCRIPTION:
+** 		Print all data inside info1 and info2.
+** RETURN:
+** 	None.
+*/
+
+void	pp_print_2_info(t_info info1, t_info info2)
+{
+	printf("\n--------info1---info2--\n");
+	printf("tot_len:  %3zu   %3zu\n", info1.tot_len, info2.tot_len);
+	printf("len    :  %3zu   %3zu\n", info1.len, info2.len);
+	printf("start  :  %3zu   %3zu\n", info1.start, info2.start);
+	printf("-------------------------\n\n");
 }

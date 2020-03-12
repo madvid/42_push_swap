@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/11 21:40:33 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 17:22:11 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int		main(int ac, char **av)
 	info1.tot_len = total;
 	info2.tot_len = total;
 	info1.len = total;
-	info2.len = total;
+	info2.len = 0;
 	info1.start = 0;
-	info2.start = total - 1;
+	info2.start = total;
 	while (i < total)
 	{
 		stack0[i] = ft_atoi(av[i + 1]);
@@ -72,25 +72,31 @@ int		main(int ac, char **av)
 
 	quicksort(&sorted_list, 0, total - 1);
 	ft_print_intab(sorted_list, total - 1);
-	//quicksort_2stacks(&data1, &data2);
-	pp_print_1stack_full(data1, info1);
+	pp_print_2stack_full(data1, data2, info1, info2);
+	quicksort_2stacks(&data1, &data2, info1, info2, 1);
+	pp_print_2stack_full(data1, data2, info1, info2);
 	
 	// pp_print_1stack_full(data1);
 
-	// printf("&d1.head = %p\n", data1.head);
-	// printf("&d1.queue = %p\n", data1.queue);
-	// printf("&d2.head = %p\n", data2.head);
-	// printf("&d2.queue = %p\n", data2.queue);
-	
-	pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_p_b(&data1, &data2);
-	// ft_p_b(&data1, &data2);
-	// pp_print_2stack_full(data1, data2);
-	// ft_stack_split(&data1);
-	// ft_rr_a(&data1);
-	// pp_print_2stack_full(data1, data2);
-	// ft_rr_a(&data1);
-	// pp_print_2stack_full(data1, data2);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_p_b(&data1, &data2, &info1, &info2);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_p_b(&data1, &data2, &info1, &info2);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_p_b(&data1, &data2, &info1, &info2);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_p_a(&data1, &data2, &info1, &info2);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_r_a(&data1, info1);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_r_a(&data1, info1);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_r_b(&data2, info2);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_r_b(&data2, info2);
+	// pp_print_2stack_full(data1, data2, info1, info2);
+	// ft_rr(&data1, &data2, info1, info2);
+	// pp_print_2stack_full(data1, data2, info1, info2);
 	// ft_rr_a(&data1);
 	// pp_print_2stack_full(data1, data2);
 	// special_swap(&data1, &data2, 3, 1);

@@ -6,7 +6,7 @@
 /*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 19:56:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/05 14:51:08 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/03/12 12:17:50 by mdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 ** 	Rotate all the elements down of the stack in data.
 */
 
-void	ft_rev_rotate(t_pp *data)
+void	ft_rev_rotate(t_pp *data, t_info info)
 {
 	int			*tmp;
 	size_t		i;
 
-	i = data->t_len;
-	tmp = data->stack[data->t_len - 1];
-	while (i > data->t_len - data->len)
+	i = data->permanent_len;
+	tmp = data->stack[data->permanent_len - 1];
+	while (i > info.start)
 	{
 		data->stack[i] = data->stack[i - 1];
 		i--;
@@ -42,9 +42,9 @@ void	ft_rev_rotate(t_pp *data)
 ** 	Then it print 'rra'.
 */
 
-void	ft_rr_a(t_pp *data1)
+void	ft_rr_a(t_pp *data1, t_info info1)
 {
-	ft_rev_rotate(data1);
+	ft_rev_rotate(data1, info1);
 	write(1,"rra\n", 4);
 }
 
@@ -56,9 +56,9 @@ void	ft_rr_a(t_pp *data1)
 ** 	Then it print 'rrb'.
 */
 
-void	ft_rr_b(t_pp *data2)
+void	ft_rr_b(t_pp *data2, t_info info2)
 {
-	ft_rev_rotate(data2);
+	ft_rev_rotate(data2, info2);
 	write(1,"rrb\n", 4);
 }
 
@@ -73,9 +73,9 @@ void	ft_rr_b(t_pp *data2)
 */
 
 
-void	ft_rrr(t_pp *data1, t_pp *data2)
+void	ft_rrr(t_pp *data1, t_pp *data2, t_info info1, t_info info2)
 {
-	ft_rev_rotate(data2);
-	ft_rev_rotate(data1);
+	ft_rev_rotate(data2, info2);
+	ft_rev_rotate(data1, info1);
 	write(1,"rrr\n", 4);
 }
