@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:05:07 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/12 13:33:45 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/04/19 19:19:13 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,25 @@
 ** RETURN: None.
 */
 
-int	ft_push(t_pp *d_orig, t_pp *d_dest, t_info *iorig, t_info *idest)
+int	ft_push(int ***s_orig, int ***s_dest, t_info *info, char a_or_b)
 {
-	if (iorig->len == 0)
+	size_t		i_orig;
+	size_t		i_dest;
+	size_t		len;
+
+	i_orig = (a_or_b == 'a') ? info->start2 : info->start1;
+	i_dest = (a_or_b == 'a') ? info->start1 : info->start2;
+	len = (a_or_b == 'a') ? info->len2 : info->len1;
+	if (len == 0)
 		return 0;
 	else
 	{
-		d_dest->stack[idest->start - 1] = d_orig->stack[iorig->start];
-		d_orig->stack[iorig->start] = NULL;
-		iorig->start += 1;
-		idest->start -= 1;
-		iorig->len -= 1;
-		idest->len += 1;
+		(*s_dest)[i_dest - 1] = (*s_orig)[i_orig];
+		(*s_orig)[i_orig] = NULL;
+		(a_or_b == 'a') ? info->len1++ : info->len2++;
+		(a_or_b == 'a') ? info->len2-- : info->len1--;
+		(a_or_b == 'a') ? info->start2++ : info->start1++;
+		(a_or_b == 'a') ? info->start1-- : info->start2--;
 		return 1;
 	}
 }
@@ -47,9 +54,9 @@ int	ft_push(t_pp *d_orig, t_pp *d_dest, t_info *iorig, t_info *idest)
 ** 	Then it print 'pa'.
 */
 
-void	ft_p_a(t_pp *data1, t_pp *data2, t_info *info1, t_info *info2)
+void	ft_p_a(t_pp *data, t_info *info)
 {
-	ft_push(data2, data1, info2, info1) ? write(1,"pa\n", 3) : 0;
+	ft_push(&(data->stack2), &(data->stack1), info, 'a') ? write(1,"pa\n", 3) : 0;
 }
 
 /*
@@ -61,7 +68,7 @@ void	ft_p_a(t_pp *data1, t_pp *data2, t_info *info1, t_info *info2)
 ** 	Then it print 'pb'.
 */
 
-void	ft_p_b(t_pp *data1, t_pp *data2, t_info *info1, t_info *info2)
+void	ft_p_b(t_pp *data, t_info *info)
 {
-	ft_push(data1, data2, info1, info2) ? write(1,"pb\n", 3) : 0;
+	ft_push(&(data->stack1), &(data->stack2), info, 'b') ? write(1,"pb\n", 3) : 0;
 }

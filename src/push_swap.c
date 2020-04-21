@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/12 17:22:11 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/04/19 19:22:54 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,90 +17,77 @@
 #include "libft.h"
 
 /*
-** Function: ft_stock_nb
-** Arguments:	int n: number of arguments
-** 				char **av: all the number to stock
+** Function:  ft_initialization
+** Arguments:	*data: pointer on struc stocking the 2 stacks
+**				*info: pointer on struct stocking info about stacks
+**				total: length of int list received in arguments 
 ** Description:
-** 	Convert the string numbers to integer and stock all the number in a table
-** 	of int.
+** 	Initialization of the differents struct and variables.
 ** Return:
-**	NULL if something wrong comes up.
-**	int *tab: a table of int.
+**	0
 */
 
-/*int		*ft_stock_nb(int n, char **av)
+void	ft_initialization(t_pp **data, t_info **info, size_t total)
 {
+	if (!(*data = (t_pp*)malloc(sizeof(t_pp))))
+		return;
+	if (!(*info = (t_info*)malloc(sizeof(t_info))))
+		return;
+	(*data)->tot_len = total;
+	if (!((*data)->stack1 = (int**)malloc(sizeof(int*) * total)))
+		return;
+	if (!((*data)->stack2 = (int**)malloc(sizeof(int*) * total)))
+	{
+		free((*data)->stack1);
+		return;
+	}
+	(*info)->tot_len = total;
+	(*info)->len1 = total;
+	(*info)->len2 = 0;
+	(*info)->start1 = 0;
+	(*info)->start2 = total;
+}
 
-}*/
+/*
+**
+**
+**
+*/
 
+void	ft_fill_stacks(int **int_stack, t_pp **data, char **av, size_t total)
+{
+	size_t		i;
+
+	i = 0;
+	if (!((*int_stack) = (int*)malloc(sizeof(int) * total)))
+		return;
+	while (i < total)
+	{
+		(*int_stack)[i] = ft_atoi(av[i + 1]);
+		(*data)->stack1[i] = &(*int_stack)[i];
+		(*data)->stack2[i] = NULL;
+		i++;
+	}
+}
 
 int		main(int ac, char **av)
 {
-	int		i = 0;
-	int		total;
-	int		*stack0;
-	int		*sorted_list;
-	t_pp	data1;
-	t_pp	data2;
-	t_info	info1;
-	t_info	info2;
+	int		*int_stack;
+	t_pp	*data;
+	t_info	*info;
 
+	//data = NULL;
+	info = NULL;
 	if (!ft_check_args(ac, av))
 		return (0);
-
-	total = ac - 1;
-	stack0 = (int*)malloc(sizeof(int) * (total));
-	sorted_list = (int*)malloc(sizeof(int) * (total));
-	data1.permanent_len = total;
-	data2.permanent_len = total;
-	data1.stack = (int**)malloc(sizeof(int*) * (total));
-	data2.stack = (int**)malloc(sizeof(int*) * (total));
-	info1.tot_len = total;
-	info2.tot_len = total;
-	info1.len = total;
-	info2.len = 0;
-	info1.start = 0;
-	info2.start = total;
-	while (i < total)
-	{
-		stack0[i] = ft_atoi(av[i + 1]);
-		sorted_list[i] = ft_atoi(av[i + 1]);
-		data1.stack[i] = &stack0[i];
-		data2.stack[i] = NULL;
-		i++;
-	}
-
-	quicksort(&sorted_list, 0, total - 1);
-	ft_print_intab(sorted_list, total - 1);
-	pp_print_2stack_full(data1, data2, info1, info2);
-	quicksort_2stacks(&data1, &data2, info1, info2, 1);
-	pp_print_2stack_full(data1, data2, info1, info2);
-	
-	// pp_print_1stack_full(data1);
-
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_p_b(&data1, &data2, &info1, &info2);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_p_b(&data1, &data2, &info1, &info2);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_p_b(&data1, &data2, &info1, &info2);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_p_a(&data1, &data2, &info1, &info2);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_r_a(&data1, info1);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_r_a(&data1, info1);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_r_b(&data2, info2);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_r_b(&data2, info2);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_rr(&data1, &data2, info1, info2);
-	// pp_print_2stack_full(data1, data2, info1, info2);
-	// ft_rr_a(&data1);
+	ft_initialization(&data, &info, ac - 1);
+	ft_fill_stacks(&int_stack, &data, av, ac - 1);
+	pp_print_2stack_full(*data, *info);
+	printf("ici avant quicksort_2_stacks\n");
+	quicksort_2stacks(data, *info, 'a');
+	pp_print_2stack_full(*data, *info);
 	// pp_print_2stack_full(data1, data2);
 	// special_swap(&data1, &data2, 3, 1);
-
 }
 	//printf("sizeof(int)=%lu\n",sizeof(int));// = 4
 	//printf("sizeof(int*)=%lu\n",sizeof(int*));// = 8

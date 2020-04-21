@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:19:31 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/12 17:27:22 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/04/16 20:53:23 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,26 @@
 ** 	None.
 */
 
-void	pp_print_addr(t_pp data, t_info info)
+void	pp_print_addr(t_pp data, t_info info, int i_stack)
 {
-	size_t	i = data.permanent_len - info.len;
-	size_t	countdown = info.len;
+	size_t	i;
+	size_t	countdown;
+	size_t	len;
+	size_t	start;
+	int		**stack;
 
-	printf("total number of the list data.len=%zu\n", info.len);
+	i = data.tot_len - (i_stack == 1) ? info.len1 : info.len2;
+	countdown = (i_stack == 1) ? info.len1 : info.len2;
+	len = (i_stack == 1) ? info.len1 : info.len2;
+	start = (i_stack == 1) ? info.start1 : info.start2;
+	stack = (i_stack == 1) ? data.stack1 : data.stack2;
+	printf("total number of the list data.len=%zu\n", len);
 	printf("start point on the stack[%zu] -- ", i);
-	printf("start point address: %p\n", (void*)data.stack[i % info.len]);
-	printf("head stack address : %p\n", (void*)data.stack[0]);
+	printf("start point address: %p\n", (void*)stack[i % len]);
+	printf("head stack address : %p\n", (void*)stack[0]);
 	while (countdown > 0)
 	{
-		printf("  address &data.pp[%zu] = %p\n", i - info.start, (void*)data.stack[i % info.len]);
+		printf("  address &data.pp[%zu] = %p\n", i - start, (void*)stack[i % len]);
 		i++;
 		countdown--;
 	}
@@ -52,24 +60,24 @@ void	pp_print_addr(t_pp data, t_info info)
 ** 	None.
 */
 
-void	pp_print_2stack_full(t_pp data1, t_pp data2, t_info info1, t_info info2)
+void	pp_print_2stack_full(t_pp data, t_info info)
 {
 	size_t	j = 0;
 
 	printf("\n-------------------------data1-------data2\n");
-	printf("Number of int in .stack:  %zu           %zu\n", info1.len, info2.len);
-	printf("Index of start in stack:  %zu           %zu\n", info1.start, info2.start);
+	printf("Number of int in .stack:  %zu           %zu\n", info.len1, info.len2);
+	printf("Index of start in stack:  %zu           %zu\n", info.start1, info.start2);
 	printf("--------------------------------------------------------data1--------------||---------------------data2-----------\n");
-	while (j < data1.permanent_len)
+	while (j < data.tot_len)
 	{
-		if (data1.stack[j] == NULL)
-			printf("[Cell adress]|[content][*content]: [%14p]|[%14p]|[%s] ||", &(data1.stack[j]), data1.stack[j], "null");
+		if (data.stack1[j] == NULL)
+			printf("[Cell adress]|[content][*content]: [%14p]|[%14p]|[%s] ||", &(data.stack1[j]), data.stack1[j], "null");
 		else
-			printf("[Cell adress]|[content][*content]: [%14p]|[%14p]|[%4d] ||", &(data1.stack[j]), data1.stack[j], *data1.stack[j]);
-		if (data2.stack[j] == NULL)
-			printf(" [%14p]|[%14p]|[%s]\n", &(data2.stack[j]), data2.stack[j], "null");
+			printf("[Cell adress]|[content][*content]: [%14p]|[%14p]|[%4d] ||", &(data.stack1[j]), data.stack1[j], *data.stack1[j]);
+		if (data.stack2[j] == NULL)
+			printf(" [%14p]|[%14p]|[%s]\n", &(data.stack2[j]), data.stack2[j], "null");
 		else
-			printf(" [%14p]|[%14p]|[%4d]\n", &(data2.stack[j]), data2.stack[j], *data2.stack[j]);
+			printf(" [%14p]|[%14p]|[%4d]\n", &(data.stack2[j]), data.stack2[j], *data.stack2[j]);
 		j++;
 	}
 	printf("-------------------------------------------------------------------------||-------------------------------------\n\n");
@@ -86,50 +94,32 @@ void	pp_print_2stack_full(t_pp data1, t_pp data2, t_info info1, t_info info2)
 ** 	None.
 */
 
-void	pp_print_1stack_full(t_pp data, t_info info)
+void	pp_print_1stack_full(t_pp data, t_info info, int i_stack)
 {
-	size_t	j = 0;
-	size_t	start = info.start;
+	size_t	j;
+	size_t	len;
+	size_t	start;
+	int		**stack;
 
+	j = 0;
+	len = (i_stack == 1) ? info.len1 : info.len2;
+	start = (i_stack == 1) ? info.start1 : info.start2;
+	stack = (i_stack == 1) ? data.stack1 : data.stack2;
 	printf("\n-------------------------data----\n");
-	printf("Number of int in .stack:  %zu\n", info.len);
+	printf("Number of int in .stack:  %zu\n", len);
 	printf("Start index in .stack  :  %zu\n", start);
 	printf("--------------------------------------------------------data1---------------\n");
-	while (j < info.len)
+	while (j < len)
 	{
-		if (data.stack[j] == NULL)
-			printf("[Cell adress]|[content][*content]: [14%p]|[14%p]|[%s]\n", &(data.stack[j]), data.stack[j], "null");
+		if (stack[j] == NULL)
+			printf("[Cell adress]|[content][*content]: [14%p]|[14%p]|[%s]\n", &(stack[j]), stack[j], "null");
 		else
-			printf("[Cell adress]|[content][*content]: [14%p]|[14%p]|[%4d]\n", &(data.stack[j]), data.stack[j], *data.stack[j]);
+			printf("[Cell adress]|[content][*content]: [14%p]|[14%p]|[%4d]\n", &(stack[j]), stack[j], *stack[j]);
 		j++;
 	}
 	printf("---------------------------------------------------------------------------\n\n");
 }
 
-/*
-** FUNCTION:	pp_print_stack
-** ARGUMENTS:	t_pp data:
-** DESCRIPTION:
-** 		Print generic information about the data: len, start point.
-** 		Print the content of data
-** RETURN:
-** 	None.
-*/
-
-void	pp_print_stack(t_pp data, t_info info)
-{
-	size_t i = info.start;
-	size_t countdown = info.len;
-
-	printf("total number of the list data.len=%zu\n", info.len);
-	printf("stack point on the stack[%zu]\n", info.start);
-	while (countdown > 0)
-	{
-		printf("  data.pp[%zu]=%d\n", i - info.start, *data.stack[i % info.len]);
-		i++;
-		countdown--;
-	}
-}
 
 /*
 ** FUNCTION:	pp_print_2_info
@@ -141,11 +131,11 @@ void	pp_print_stack(t_pp data, t_info info)
 ** 	None.
 */
 
-void	pp_print_2_info(t_info info1, t_info info2)
+void	pp_print_2_info(t_info info)
 {
 	printf("\n--------info1---info2--\n");
-	printf("tot_len:  %3zu   %3zu\n", info1.tot_len, info2.tot_len);
-	printf("len    :  %3zu   %3zu\n", info1.len, info2.len);
-	printf("start  :  %3zu   %3zu\n", info1.start, info2.start);
+	printf("tot_len:  %3zu   %3zu\n", info.tot_len, info.tot_len);
+	printf("len    :  %3zu   %3zu\n", info.len1, info.len2);
+	printf("start  :  %3zu   %3zu\n", info.start1, info.start2);
 	printf("-------------------------\n\n");
 }

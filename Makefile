@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+         #
+#    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/11 16:48:33 by weilin            #+#    #+#              #
-#    Updated: 2020/03/12 14:45:45 by mdavid           ###   ########.fr        #
+#    Updated: 2020/04/13 19:06:18 by md4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LIB_FILES = ft_atoi ft_isdigit ft_isnumber ft_strcmp ft_memalloc ft_strnew \
 COMMON_FILES = tools_print ft_check_args tools_intab
 CHECK_FILES = checker init_tab_actions check_actions
 PSH_SWP_FILES = push_swap swap push rotate rev_rotate naive_test_sorts quicksort \
-				quicksort_2stacks ft_stack_split
+				quicksort_2stacks ft_stack_split sort_stack tools_info push_back \
+				ft_issort ft_stat_tools
 
 CHECK_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))
 PSH_SWP_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))
