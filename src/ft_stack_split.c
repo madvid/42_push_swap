@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:25:00 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/19 19:42:00 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/22 21:31:16 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,18 @@
 **	top of the stack.
 */
 
-void	ft_head_back_to_top(t_pp *data, t_info *info, size_t rot_rev, char a_or_b)
+void	ft_head_back_to_top(t_pp *data, t_info *info, size_t rot_rev,
+		char a_or_b)
 {
-	void	(*ft_rr)(t_pp*,t_info);
-	void	(*ft_r)(t_pp*,t_info);
+	void	(*ft_rr)(t_pp*, t_info);
+	void	(*ft_r)(t_pp*, t_info);
+	size_t	len;
 
 	ft_r = (a_or_b == 'a') ? &ft_r_a : &ft_r_b;
 	ft_rr = (a_or_b == 'a') ? &ft_rr_a : &ft_rr_b;
-	if ((info->len / 2) > rot_rev)
-		while (rot_rev < info->len)
+	len = (a_or_b == 'a') ? info->len1 : info->len2;
+	if ((len / 2) > rot_rev)
+		while (rot_rev < len)
 		{
 			ft_r(data, *info);
 			rot_rev++;
@@ -69,16 +72,15 @@ void	ft_stck_splt2b(t_pp *data, t_info *info,
 	printf("valeur de order = %d\n", order);
 	while (count < info->len1 + info->len2)
 	{
-		if (*d_a->stack[info_a->start] < order)
-			ft_p_b(d_a, d_b, info_a, info_b);
+		if (*data->stack1[info->start1] < order)
+			ft_p_b(data, info);
 		else
 		{
-			(count + 1 != info_a->len + info_b->len) ?  ft_r_a(d_a, *info_a) : 0;
-			(count + 1 != info_a->len + info_b->len) ? count_ra++ : 0;
+			(count + 1 != info->len1 + info->len2) ? ft_r_a(data, *info) : 0;
+			(count + 1 != info->len1 + info->len2) ? count_ra++ : 0;
 		}
 		count++;
 	}
-	//ft_head_back_to_top(d_a, info_a, count_ra, 'a');
 }
 
 /*
@@ -92,7 +94,7 @@ void	ft_stck_splt2b(t_pp *data, t_info *info,
 ** 	within the stack.
 */
 
-void	ft_stck_splt2a(t_pp *d_a, t_pp *d_b, t_info *info_a, t_info *info_b,
+void	ft_stck_splt2a(t_pp *data, t_info *info,
 	int (*ft_order)(int*, int**, size_t))
 {
 	int			order;
@@ -101,19 +103,18 @@ void	ft_stck_splt2a(t_pp *d_a, t_pp *d_b, t_info *info_a, t_info *info_b,
 
 	count_rb = 0;
 	count = 0;
-	info_a->len = 0;
-	ft_order(&order, d_b->stack, info_b->len);
+	info->len1 = 0;
+	ft_order(&order, data->stack2, info->len2);
 	printf("valeur de order = %d\n", order);
-	while (count < info_a->len + info_b->len)
+	while (count < info->len1 + info->len2)
 	{
-		if (*d_b->stack[info_b->start] >= order)
-			ft_p_a(d_a, d_b, info_a, info_b);
+		if (*data->stack2[info->start2] >= order)
+			ft_p_a(data, info);
 		else
 		{
-			(count + 1 < info_a->len + info_b->len) ? ft_r_b(d_b, *info_b) : 0;
-			(count + 1 < info_a->len + info_b->len) ? count_rb++ : 0;
+			(count + 1 < info->len1 + info->len2) ? ft_r_b(data, *info) : 0;
+			(count + 1 < info->len1 + info->len2) ? count_rb++ : 0;
 		}
 		count++;
 	}
-	//ft_head_back_to_top(d_b, info_b, count_rb, 'b');
 }

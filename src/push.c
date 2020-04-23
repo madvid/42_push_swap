@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:05:07 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/19 19:19:13 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/22 22:13:25 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** RETURN: None.
 */
 
-int	ft_push(int ***s_orig, int ***s_dest, t_info *info, char a_or_b)
+int		ft_push(int ***s_orig, int ***s_dest, t_info *info, char a_or_b)
 {
 	size_t		i_orig;
 	size_t		i_dest;
@@ -32,7 +32,7 @@ int	ft_push(int ***s_orig, int ***s_dest, t_info *info, char a_or_b)
 	i_dest = (a_or_b == 'a') ? info->start1 : info->start2;
 	len = (a_or_b == 'a') ? info->len2 : info->len1;
 	if (len == 0)
-		return 0;
+		return (0);
 	else
 	{
 		(*s_dest)[i_dest - 1] = (*s_orig)[i_orig];
@@ -41,7 +41,7 @@ int	ft_push(int ***s_orig, int ***s_dest, t_info *info, char a_or_b)
 		(a_or_b == 'a') ? info->len2-- : info->len1--;
 		(a_or_b == 'a') ? info->start2++ : info->start1++;
 		(a_or_b == 'a') ? info->start1-- : info->start2--;
-		return 1;
+		return (1);
 	}
 }
 
@@ -56,7 +56,8 @@ int	ft_push(int ***s_orig, int ***s_dest, t_info *info, char a_or_b)
 
 void	ft_p_a(t_pp *data, t_info *info)
 {
-	ft_push(&(data->stack2), &(data->stack1), info, 'a') ? write(1,"pa\n", 3) : 0;
+	ft_push(&(data->stack2), &(data->stack1), info, 'a') ?
+		write(1, "pa\n", 3) : 0;
 }
 
 /*
@@ -70,5 +71,6 @@ void	ft_p_a(t_pp *data, t_info *info)
 
 void	ft_p_b(t_pp *data, t_info *info)
 {
-	ft_push(&(data->stack1), &(data->stack2), info, 'b') ? write(1,"pb\n", 3) : 0;
+	ft_push(&(data->stack1), &(data->stack2), info, 'b') ?
+		write(1, "pb\n", 3) : 0;
 }

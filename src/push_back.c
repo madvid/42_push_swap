@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/29 10:47:06 by md4               #+#    #+#             */
-/*   Updated: 2020/03/29 12:00:35 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/22 22:09:03 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@
 ** RETURN: None.
 */
 
-void	ft_push_back_2_a(t_pp *d_a, t_pp *d_b, t_info *i_a, t_info *i_b)
+void	ft_push_back_2_a(t_pp *data, t_info *info)
 {
 	size_t	s;
 
-	s = i_b->len;
-	printf("____ ft_push_back_2_a\n");
+	s = info->len2;
 	while (s > 0)
 	{
-		ft_p_a(d_a, d_b, i_a, i_b);
+		ft_p_a(data, info);
 		s--;
 	}
 }
@@ -47,15 +46,14 @@ void	ft_push_back_2_a(t_pp *d_a, t_pp *d_b, t_info *i_a, t_info *i_b)
 ** RETURN: None.
 */
 
-void	ft_push_back_2_b(t_pp *d_a, t_pp *d_b, t_info *i_a, t_info *i_b)
+void	ft_push_back_2_b(t_pp *data, t_info *info)
 {
 	size_t	s;
 
-	s = i_a->len;
-	printf("____ ft_push_back_2_b\n");
+	s = info->len1;
 	while (s > 0)
 	{
-		ft_p_b(d_a, d_b, i_a, i_b);
+		ft_p_b(data, info);
 		s--;
 	}
 }
@@ -73,10 +71,10 @@ void	ft_push_back_2_b(t_pp *d_a, t_pp *d_b, t_info *i_a, t_info *i_b)
 ** RETURN: None.
 */
 
-void	ft_push_back(t_pp *d_a, t_pp *d_b, t_info *i_a, t_info *i_b, char a_or_b)
+void	ft_push_back(t_pp *data, t_info *info, char a_or_b)
 {
 	if (a_or_b == 'a')
-		ft_push_back_2_b(d_a, d_b, i_a, i_b);
+		ft_push_back_2_b(data, info);
 	if (a_or_b == 'b')
-		ft_push_back_2_a(d_a, d_b, i_a, i_b);
+		ft_push_back_2_a(data, info);
 }

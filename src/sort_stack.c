@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 21:22:15 by md4               #+#    #+#             */
-/*   Updated: 2020/04/19 17:27:27 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/22 21:27:04 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,33 @@
 **	of elements in the relative stack A is equal to 3.
 */
 
-int		ft_sort_small_stack_b(int **stack, t_info info)
+int		ft_sort_small_stack_b(t_pp *data, t_info info)
 {
-	size_t  s;
+	size_t		s;
 
 	s = info.start2;
-	if (*stack[s] > *stack[s + 1]
-		&& *stack[s + 1] > *stack[s + 2])
+	if (*(data->stack2[s]) > *(data->stack2[s + 1])
+		&& *(data->stack2[s + 1]) > *(data->stack2[s + 2]))
 		return (0);
-	else if (*stack[s] > *stack[s + 1]
-		&& *stack[s + 1] < *stack[s + 2]
-		&& *stack[s] > *stack[s + 2])
-		{
-			ft_r_b(stack, info);
-			ft_s_b(stack, info);
-			ft_rr_b(stack, info);
-		}
-	else if (*stack[s] > *stack[s + 1]
-		&& *stack[s + 1] < *stack[s + 2]
-		&& *stack[s] < *stack[s + 2])
-		{
-			ft_r_b(stack, info);
-			ft_s_b(stack, info);
-			ft_rr_b(stack, info);
-			ft_s_b(stack, info);
-		}
+	else if (*(data->stack2[s]) > *(data->stack2[s + 1])
+		&& *(data->stack2[s]) > *(data->stack2[s + 2])
+		&& *(data->stack2[s + 1]) < *(data->stack2[s + 2]))
+	{
+		ft_r_b(data, info);
+		ft_s_b(data, info);
+		ft_rr_b(data, info);
+	}
+	else if (*(data->stack2[s]) > *(data->stack2[s + 1])
+		&& *(data->stack2[s + 1]) < *(data->stack2[s + 2])
+		&& *(data->stack2[s]) < *(data->stack2[s + 2]))
+	{
+		ft_r_b(data, info);
+		ft_s_b(data, info);
+		ft_rr_b(data, info);
+		ft_s_b(data, info);
+	}
 	else
-		ft_sort_small_stack_b_next(stack,info);
+		ft_sort_small_stack_b_next(data, info);
 	return (1);
 }
 
@@ -61,33 +61,32 @@ int		ft_sort_small_stack_b(int **stack, t_info info)
 **	of elements in the relative stack A is equal to 3.
 */
 
-void	ft_sort_small_stack_b_next(int **stack,t_info info)
+void	ft_sort_small_stack_b_next(t_pp *data, t_info info)
 {
-	size_t  s;
+	size_t	s;
 
 	s = info.start2;
-	if (*stack[s] < *stack[s + 1]
-		&& *stack[s + 1] > *stack[s + 2]
-		&& *stack[s] > *stack[s + 2])
+	if (*(data->stack2[s]) < *(data->stack2[s + 1]) && *(data->stack2[s + 1])
+		> *(data->stack2[s + 2]) && *(data->stack2[s]) > *(data->stack2[s + 2]))
 	{
-		ft_s_b(stack, info);
+		ft_s_b(data, info);
 	}
-	else if (*stack[s] < *stack[s + 1]
-		&& *stack[s + 1] > *stack[s + 2]
-		&& *stack[s] < *stack[s + 2])
+	else if (*(data->stack2[s]) < *(data->stack2[s + 1])
+		&& *(data->stack2[s + 1]) > *(data->stack2[s + 2])
+		&& *(data->stack2[s]) < *(data->stack2[s + 2]))
 	{
-		ft_s_b(stack, info);
-		ft_r_b(stack, info);
-		ft_s_b(stack, info);
-		ft_rr_b(stack, info);
+		ft_s_b(data, info);
+		ft_r_b(data, info);
+		ft_s_b(data, info);
+		ft_rr_b(data, info);
 	}
 	else
 	{
-		ft_s_b(stack, info);
-		ft_r_b(stack, info);
-		ft_s_b(stack, info);
-		ft_rr_b(stack, info);
-		ft_s_b(stack, info);
+		ft_s_b(data, info);
+		ft_r_b(data, info);
+		ft_s_b(data, info);
+		ft_rr_b(data, info);
+		ft_s_b(data, info);
 	}
 }
 
@@ -96,33 +95,33 @@ void	ft_sort_small_stack_b_next(int **stack,t_info info)
 ** Parameters:	*t_pp *data2 : stack with 'number' (pointers on its)
 **				*t_info *info2 : informations on current stack (start & len)
 ** Description:
-**	Sort the stack B(/2) (given in parameter) in ascending order if the number of
-**	elements in the relative stack B is equal to 3.
+**	Sort the stack B(/2) (given in parameter) in ascending order if the number
+**	of elements in the relative stack B is equal to 3.
 */
 
-int		ft_sort_small_stack_a(int **stack, t_info info)
+int		ft_sort_small_stack_a(t_pp *data, t_info info)
 {
-	size_t  s;
+	size_t	s;
 
 	s = info.start1;
-	if (*stack[s] < *stack[s + 1]
-		&& *stack[s + 1] < *stack[s + 2])
+	if (*(data->stack1[s]) < *(data->stack1[s + 1])
+		&& *(data->stack1[s + 1]) < *(data->stack1[s + 2]))
 		return (0);
-	else if (*stack[s] > *stack[s + 1]
-		&& *stack[s + 1] < *stack[s + 2]
-		&& *stack[s] < *stack[s + 2])
-		ft_s_a(stack, info);
-	else if (*stack[s] < *stack[s + 1]
-		&& *stack[s + 1] > *stack[s + 2]
-		&& *stack[s] > *stack[s + 2])
+	else if (*(data->stack1[s]) > *(data->stack1[s + 1])
+		&& *(data->stack1[s + 1]) < *(data->stack1[s + 2])
+		&& *(data->stack1[s]) < *(data->stack1[s + 2]))
+		ft_s_a(data, info);
+	else if (*(data->stack1[s]) < *(data->stack1[s + 1])
+		&& *(data->stack1[s + 1]) > *(data->stack1[s + 2])
+		&& *(data->stack1[s]) > *(data->stack1[s + 2]))
 	{
-		ft_r_a(stack,info);
-		ft_s_a(stack,info);
-		ft_rr_a(stack,info);
-		ft_s_a(stack,info);
+		ft_r_a(data, info);
+		ft_s_a(data, info);
+		ft_rr_a(data, info);
+		ft_s_a(data, info);
 	}
 	else
-		ft_sort_small_stack_a_next(stack,info);
+		ft_sort_small_stack_a_next(data, info);
 	return (1);
 }
 
@@ -132,39 +131,39 @@ int		ft_sort_small_stack_a(int **stack, t_info info)
 **				*t_info *info : informations on current stack (start & len)
 ** Description:
 **	Second par of the function ft_sort_small_a.
-**	Sort the stack B(/2) (given in parameter) in ascending order if the number of
-**	elements in the relative stack B is equal to 3.
+**	Sort the stack B(/2) (given in parameter) in ascending order if the number
+**	of elements in the relative stack B is equal to 3.
 */
 
-void	ft_sort_small_stack_a_next(int **stack,t_info info)
+void	ft_sort_small_stack_a_next(t_pp *data, t_info info)
 {
-	size_t  s;
+	size_t	s;
 
 	s = info.start1;
-	if (*stack[s] > *stack[s + 1]
-		&& *stack[s + 1] > *stack[s + 2]
-		&& *stack[s] > *stack[s + 2])
+	if (*(data->stack1[s]) > *(data->stack1[s + 1])
+		&& *(data->stack1[s + 1]) > *(data->stack1[s + 2])
+		&& *(data->stack1[s]) > *(data->stack1[s + 2]))
 	{
-		ft_s_a(stack, info);
-		ft_r_a(stack, info);
-		ft_s_a(stack, info);
-		ft_rr_a(stack, info);
-		ft_s_a(stack, info);
+		ft_s_a(data, info);
+		ft_r_a(data, info);
+		ft_s_a(data, info);
+		ft_rr_a(data, info);
+		ft_s_a(data, info);
 	}
-	else if (*stack[s] > *stack[s + 1]
-		&& *stack[s + 1] < *stack[s + 2]
-		&& *stack[s] > *stack[s + 2])
+	else if (*(data->stack1[s]) > *(data->stack1[s + 1])
+		&& *(data->stack1[s + 1]) < *(data->stack1[s + 2])
+		&& *(data->stack1[s]) > *(data->stack1[s + 2]))
 	{
-		ft_s_a(stack, info);
-		ft_r_a(stack, info);
-		ft_s_a(stack, info);
-		ft_rr_a(stack, info);
+		ft_s_a(data, info);
+		ft_r_a(data, info);
+		ft_s_a(data, info);
+		ft_rr_a(data, info);
 	}
 	else
 	{
-		ft_r_a(stack,info);
-		ft_s_a(stack,info);
-		ft_rr_a(stack,info);
+		ft_r_a(data, info);
+		ft_s_a(data, info);
+		ft_rr_a(data, info);
 	}
 }
 
@@ -181,19 +180,19 @@ void	ft_sort_small_stack_a_next(int **stack,t_info info)
 **		1 : stack has been sorted.
 */
 
-int		ft_sort_2_elem(int **stack, t_info info, char a_or_b)
+int		ft_sort_2_elem(t_pp *data, t_info info, char a_or_b)
 {
-	size_t  s;
+	size_t	s;
 
-	s = (a_or_b =='a') ? info.start1 : info.start2;
-	if (a_or_b == 'a' && *(stack[s]) > *(stack[s + 1]))
+	s = (a_or_b == 'a') ? info.start1 : info.start2;
+	if (a_or_b == 'a' && *(data->stack1[s]) > *(data->stack1[s + 1]))
 	{
-		ft_s_a(stack, info);
+		ft_s_a(data, info);
 		return (1);
 	}
-	if (a_or_b == 'b' && (*stack[s]) < (*stack[s + 1]))
+	if (a_or_b == 'b' && *(data->stack2[s]) < *(data->stack2[s + 1]))
 	{
-		ft_s_b(stack, info);
+		ft_s_b(data, info);
 		return (1);
 	}
 	return (0);
@@ -223,13 +222,13 @@ int		ft_sort_short_stack(t_pp *data, t_info info, char a_or_b)
 		return (-1);
 	if (a_or_b == 'a')
 	{
-		sorted += (len == 3) ? ft_sort_small_stack_a(data->stack1, info) : 0;
-		sorted += (len == 2) ? ft_sort_2_elem(data->stack1, info, a_or_b) : 0;
+		sorted += (len == 3) ? ft_sort_small_stack_a(data, info) : 0;
+		sorted += (len == 2) ? ft_sort_2_elem(data, info, a_or_b) : 0;
 	}
 	if (a_or_b == 'b')
 	{
-		sorted += (len == 3) ? ft_sort_small_stack_b(data->stack2, info) : 0;
-		sorted += (len == 2) ? ft_sort_2_elem(data->stack2, info, a_or_b) : 0;
+		sorted += (len == 3) ? ft_sort_small_stack_b(data, info) : 0;
+		sorted += (len == 2) ? ft_sort_2_elem(data, info, a_or_b) : 0;
 	}
-	return(sorted);
+	return (sorted);
 }

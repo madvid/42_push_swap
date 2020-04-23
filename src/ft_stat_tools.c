@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 18:49:24 by md4               #+#    #+#             */
-/*   Updated: 2020/04/19 16:21:40 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/22 21:52:36 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		ft_get_average(int *avg, int **stack, size_t nb_elem)
 
 	k = 0;
 	if (nb_elem == 0)
-		return(0);
+		return (0);
 	while (stack[k] == NULL)
 		k++;
 	while (k < nb_elem)
@@ -103,7 +103,7 @@ int		ft_get_pos_min(int **stack, t_info info, char a_or_b)
 			pos = i;
 		i++;
 	}
-    return (pos);
+	return (pos);
 }
 
 /*
@@ -133,5 +133,5 @@ int		ft_get_pos_max(int **stack, t_info info, char a_or_b)
 			pos = i;
 		i++;
 	}
-    return (pos);
+	return (pos);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_tab_actions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:02:17 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/05 13:04:07 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/04/22 22:18:43 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		ft_tab_alloc(const char ***str)
 
 	i = -1;
 	if (!((*str) = (const char**)malloc(sizeof(const char*) * 12)))
-		return;
+		return ;
 	while (++i <= 7)
 	{
 		if (!((*str)[i] = (const char*)malloc(sizeof(const char*) * 4)))
@@ -28,7 +28,7 @@ void		ft_tab_alloc(const char ***str)
 			while (--i >= 0)
 				free((void*)(*str)[i]);
 			free(*str);
-			return;
+			return ;
 		}
 	}
 	while (++i <= 10)
@@ -38,10 +38,9 @@ void		ft_tab_alloc(const char ***str)
 			while (--i >= 0)
 				free((void*)(*str)[i]);
 			free(*str);
-			return;
+			return ;
 		}
 	}
-	(*str)[11] = NULL;
 }
 
 const char	**ft_init_tab_actions(void)
@@ -60,5 +59,6 @@ const char	**ft_init_tab_actions(void)
 	actions[8] = "rra\n";
 	actions[9] = "rrb\n";
 	actions[10] = "rrr\n";
+	actions[11] = NULL;
 	return (actions);
 }

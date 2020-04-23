@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:31:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/18 17:23:00 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/22 19:49:41 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int		ft_swap(int **data, t_info info)
 ** RETURN: None.
 */
 
-void	ft_s_a(int **data1, t_info info)
+void	ft_s_a(t_pp *data, t_info info)
 {
-	ft_swap(data1, info) ? write(1,"sa\n", 3) : 0;
+	ft_swap(data->stack1, info) ? write(1, "sa\n", 3) : 0;
 }
 
 /*
@@ -84,9 +84,9 @@ void	ft_s_a(int **data1, t_info info)
 ** RETURN: None.
 */
 
-void	ft_s_b(int **data2, t_info info)
+void	ft_s_b(t_pp *data, t_info info)
 {
-	ft_swap(data2, info) ? write(1,"sb\n", 3) : 0;
+	ft_swap(data->stack2, info) ? write(1, "sb\n", 3) : 0;
 }
 
 /*

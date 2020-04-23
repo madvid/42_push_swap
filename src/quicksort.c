@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:44:49 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/11 15:13:42 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/04/22 22:14:22 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ int		permute(int **sort_lst, int left, int right, int pivot)
 **		RIEN.
 */
 
-void		quicksort(int **sort_lst, int index_left, int index_right)
+void	quicksort(int **sort_lst, int index_left, int index_right)
 {
 	int		pivot;
 	int		index;
-	
+
 	if (index_left >= index_right)
 		return ;
 	pivot = (*sort_lst)[(index_left + index_right) / 2];

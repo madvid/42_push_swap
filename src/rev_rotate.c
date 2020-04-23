@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 19:56:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/19 18:21:20 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/22 19:50:50 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	ft_rev_rotate(int **stack, t_info info, char a_or_b)
 void	ft_rr_a(t_pp *data, t_info info)
 {
 	if (info.len1 == 0)
-		return;
+		return ;
 	ft_rev_rotate(data->stack1, info, 'a');
-	write(1,"rra\n", 4);
+	write(1, "rra\n", 4);
 }
 
 /*
@@ -63,9 +63,9 @@ void	ft_rr_a(t_pp *data, t_info info)
 void	ft_rr_b(t_pp *data, t_info info)
 {
 	if (info.len2 == 0)
-		return;
+		return ;
 	ft_rev_rotate(data->stack2, info, 'b');
-	write(1,"rrb\n", 4);
+	write(1, "rrb\n", 4);
 }
 
 /*
@@ -78,10 +78,9 @@ void	ft_rr_b(t_pp *data, t_info info)
 ** 	Then it print 'rrr'.
 */
 
-
 void	ft_rrr(t_pp *data, t_info info)
 {
 	ft_rev_rotate(data->stack2, info, 'b');
 	ft_rev_rotate(data->stack1, info, 'a');
-	write(1,"rrr\n", 4);
+	write(1, "rrr\n", 4);
 }
