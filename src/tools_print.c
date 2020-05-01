@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:19:31 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/22 22:11:40 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/30 18:19:45 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	pp_print_2stack_full(t_pp data, t_info info)
 	while (j < data.tot_len)
 	{
 		if (data.stack1[j] == NULL)
-			printf("[Cell adress]|[content][*content]: [%14p]|[%14p]|[%s] ||", &(data.stack1[j]), data.stack1[j], "null");
+			printf("[%ld] [Cell adress]|[content][*content]: [%14p]|[%14p]|[%s] ||", j, &(data.stack1[j]), data.stack1[j], "null");
 		else
-			printf("[Cell adress]|[content][*content]: [%14p]|[%14p]|[%4d] ||", &(data.stack1[j]), data.stack1[j], *data.stack1[j]);
+			printf("[%ld] [Cell adress]|[content][*content]: [%14p]|[%14p]|[%4d] ||", j, &(data.stack1[j]), data.stack1[j], *data.stack1[j]);
 		if (data.stack2[j] == NULL)
 			printf(" [%14p]|[%14p]|[%s]\n", &(data.stack2[j]), data.stack2[j], "null");
 		else

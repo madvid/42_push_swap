@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/22 21:49:45 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/01 17:52:54 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 **				total: length of int list received in arguments
 ** Description:
 ** 	Initialization of the differents struct and variables.
-** Return:
-**	0
 */
 
 void	ft_initialization(t_pp **data, t_info **info, size_t total)
@@ -76,6 +74,12 @@ void	ft_fill_stacks(int **int_stack, t_pp **data, char **av, size_t total)
 	}
 }
 
+/*
+**
+**
+**
+*/
+
 int		main(int ac, char **av)
 {
 	int		*int_stack;
@@ -87,8 +91,18 @@ int		main(int ac, char **av)
 		return (0);
 	ft_initialization(&data, &info, ac - 1);
 	ft_fill_stacks(&int_stack, &data, av, ac - 1);
-	quicksort_2stacks(data, *info, 'a');
-	pp_print_1stack_full(*data, *info, 1);
+	if (info->tot_len <= 5)
+		ft_optimal_small_sort(data, info);
+	else
+	{
+		// Here it have to be check if the stack is sorted but where the start
+		// is not on top : look at stack_issort
+		// Plus, add a function to look if the stack can be sort with one or several actions
+		// Kind of coding an estimation function to determinerthe disorder of the stack and
+		// decide if quick sort should be run or not.
+		quicksort_2stacks(data, *info, 'a');
+	}
+	pp_print_2stack_full(*data, *info);
 	ft_issort(data, *info, 1, 'a') == 1 ?
-	write(1, "liste triée\n", 12) : write(1, "liste non triée\n", 17);
+	write(1, "list sorted\n", 12) : write(1, "liste not sorted\n", 17);
 }

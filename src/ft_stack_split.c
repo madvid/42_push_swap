@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:25:00 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/22 21:31:16 by md4              ###   ########.fr       */
+/*   Updated: 2020/04/30 00:37:59 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	ft_stck_splt2b(t_pp *data, t_info *info,
 		}
 		count++;
 	}
+	while (count_ra-- > 0)
+		ft_rr_a(data, *info);
 }
 
 /*
@@ -117,4 +119,6 @@ void	ft_stck_splt2a(t_pp *data, t_info *info,
 		}
 		count++;
 	}
+	while (count_rb-- > 0)
+		ft_rr_b(data, *info);
 }
