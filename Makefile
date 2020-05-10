@@ -6,7 +6,7 @@
 #    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/11 16:48:33 by weilin            #+#    #+#              #
-#    Updated: 2020/04/13 19:06:18 by md4              ###   ########.fr        #
+#    Updated: 2020/04/27 18:13:32 by md4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ COMMON_FILES = tools_print ft_check_args tools_intab
 CHECK_FILES = checker init_tab_actions check_actions
 PSH_SWP_FILES = push_swap swap push rotate rev_rotate naive_test_sorts quicksort \
 				quicksort_2stacks ft_stack_split sort_stack tools_info push_back \
-				ft_issort ft_stat_tools
+				ft_issort ft_stat_tools optimal_small_sort
 
 CHECK_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))
 PSH_SWP_FILES+= $(addprefix $(LIB_DIR),$(LIB_FILES))

@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/01 17:52:54 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/10 13:40:41 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,9 @@ int		main(int ac, char **av)
 		// decide if quick sort should be run or not.
 		quicksort_2stacks(data, *info, 'a');
 	}
-	pp_print_2stack_full(*data, *info);
+	pp_print_stack_only(data, info);
 	ft_issort(data, *info, 1, 'a') == 1 ?
-	write(1, "list sorted\n", 12) : write(1, "liste not sorted\n", 17);
+	write(1, "list sorted\n", 12) : write(1, "list not sorted\n", 16);
+	//pp_print_2stack_full(*data, *info);
+	printf("Number of actions to sort: %d\n", data->nb_actions);
 }

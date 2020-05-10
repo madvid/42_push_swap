@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/29 10:47:06 by md4               #+#    #+#             */
-/*   Updated: 2020/04/30 13:39:04 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/08 23:35:29 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_push_back_2_b(t_pp *data, t_info *info)
 
 void	ft_push_back(t_pp *data, t_info *info, char a_or_b)
 {
-	printf("- - - longueur des piles en cours: len_s1 = %ld   len_s2 = %ld\n", info->len1, info->len2);
+	//if (a_or_b == 'a' && ft_stack_issort_t2b(data->stack1, *info, 'a') == 0)
 	if (a_or_b == 'a')
 		ft_push_back_2_b(data, info);
 	if (a_or_b == 'b')

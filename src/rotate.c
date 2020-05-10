@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:45:42 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/22 22:16:28 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/05 17:41:01 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_r_a(t_pp *data, t_info info)
 		return ;
 	ft_rotate(data->stack1, info, 'a');
 	write(1, "ra\n", 3);
+	data->nb_actions += 1;
 }
 
 /*
@@ -86,6 +87,7 @@ void	ft_r_b(t_pp *data, t_info info)
 		return ;
 	ft_rotate(data->stack2, info, 'b');
 	write(1, "rb\n", 3);
+	data->nb_actions += 1;
 }
 
 /*
@@ -103,4 +105,5 @@ void	ft_rr(t_pp *data, t_info info)
 	ft_rotate(data->stack2, info, 'b');
 	ft_rotate(data->stack1, info, 'a');
 	write(1, "rr\n", 3);
+	data->nb_actions += 1;
 }

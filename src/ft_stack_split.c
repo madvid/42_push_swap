@@ -6,46 +6,11 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:25:00 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/30 00:37:59 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/10 12:23:01 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-** Function: ft_head_back_to_top
-** PARAMETERS:	t_pp *data: data struct containing stack of number.
-**				t_info *info: data struct containing stack info.
-**				int rot_rev: number of rotations performed during split.
-**				a_or_b: tag to know which stack is treating.
-** DESCRIPTION:
-** 	Performs reverse rotation or rotatio n to bring back number initially on
-**	top of the stack.
-*/
-
-void	ft_head_back_to_top(t_pp *data, t_info *info, size_t rot_rev,
-		char a_or_b)
-{
-	void	(*ft_rr)(t_pp*, t_info);
-	void	(*ft_r)(t_pp*, t_info);
-	size_t	len;
-
-	ft_r = (a_or_b == 'a') ? &ft_r_a : &ft_r_b;
-	ft_rr = (a_or_b == 'a') ? &ft_rr_a : &ft_rr_b;
-	len = (a_or_b == 'a') ? info->len1 : info->len2;
-	if ((len / 2) > rot_rev)
-		while (rot_rev < len)
-		{
-			ft_r(data, *info);
-			rot_rev++;
-		}
-	else
-		while (rot_rev > 0)
-		{
-			ft_rr(data, *info);
-			rot_rev--;
-		}
-}
 
 /*
 ** FUNCTION: ft_stack_split2b
@@ -58,7 +23,7 @@ void	ft_head_back_to_top(t_pp *data, t_info *info, size_t rot_rev,
 ** 	within the stack.
 */
 
-void	ft_stck_splt2b(t_pp *data, t_info *info,
+void	ft_stck_splt2b_v1(t_pp *data, t_info *info,
 	int (*ft_order)(int*, int**, size_t))
 {
 	int			order;
@@ -69,11 +34,41 @@ void	ft_stck_splt2b(t_pp *data, t_info *info,
 	count = 0;
 	info->len2 = 0;
 	ft_order(&order, data->stack1, info->len1);
-	printf("valeur de order = %d\n", order);
 	while (count < info->len1 + info->len2)
 	{
 		if (*data->stack1[info->start1] < order)
 			ft_p_b(data, info);
+		else
+		{
+			(count + 1 != info->len1 + info->len2) ? ft_r_a(data, *info) : 0;
+			(count + 1 != info->len1 + info->len2) ? count_ra++ : 0;
+		}
+		count++;
+	}
+	while (count_ra-- > 0)
+		ft_rr_a(data, *info);
+}
+
+void	ft_stck_splt2b(t_pp *data, t_info *info,
+	int (*ft_order)(int*, int**, size_t))
+{
+	int			order;
+	size_t		count;
+	size_t		count_p;
+	size_t		count_ra;
+
+	count_ra = 0;
+	count = 0;
+	count_p = 0;
+	info->len2 = 0;
+	ft_order(&order, data->stack1, info->len1);
+	while (count < info->len1 + info->len2 && count_p < (info->len1 + info->len2 + 1) / 2)
+	{
+		if (*data->stack1[info->start1] < order)
+		{
+			ft_p_b(data, info);
+			count_p++;
+		}
 		else
 		{
 			(count + 1 != info->len1 + info->len2) ? ft_r_a(data, *info) : 0;
@@ -96,7 +91,7 @@ void	ft_stck_splt2b(t_pp *data, t_info *info,
 ** 	within the stack.
 */
 
-void	ft_stck_splt2a(t_pp *data, t_info *info,
+void	ft_stck_splt2a_v1(t_pp *data, t_info *info,
 	int (*ft_order)(int*, int**, size_t))
 {
 	int			order;
@@ -107,11 +102,41 @@ void	ft_stck_splt2a(t_pp *data, t_info *info,
 	count = 0;
 	info->len1 = 0;
 	ft_order(&order, data->stack2, info->len2);
-	printf("valeur de order = %d\n", order);
 	while (count < info->len1 + info->len2)
 	{
 		if (*data->stack2[info->start2] >= order)
 			ft_p_a(data, info);
+		else
+		{
+			(count + 1 < info->len1 + info->len2) ? ft_r_b(data, *info) : 0;
+			(count + 1 < info->len1 + info->len2) ? count_rb++ : 0;
+		}
+		count++;
+	}
+	while (count_rb-- > 0)
+		ft_rr_b(data, *info);
+}
+
+void	ft_stck_splt2a(t_pp *data, t_info *info,
+	int (*ft_order)(int*, int**, size_t))
+{
+	int			order;
+	size_t		count;
+	size_t		count_p;
+	size_t		count_rb;
+
+	count_rb = 0;
+	count = 0;
+	count_p = 0;
+	info->len1 = 0;
+	ft_order(&order, data->stack2, info->len2);
+	while (count < info->len1 + info->len2 && count_p < (info->len1 + info->len2 + 1) / 2)
+	{
+		if (*data->stack2[info->start2] >= order)
+		{
+			ft_p_a(data, info);
+			count_p++;
+		}
 		else
 		{
 			(count + 1 < info->len1 + info->len2) ? ft_r_b(data, *info) : 0;

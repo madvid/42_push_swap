@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:05:07 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/22 22:13:25 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/05 17:41:54 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_p_a(t_pp *data, t_info *info)
 {
 	ft_push(&(data->stack2), &(data->stack1), info, 'a') ?
 		write(1, "pa\n", 3) : 0;
+	data->nb_actions += 1;
 }
 
 /*
@@ -73,4 +74,5 @@ void	ft_p_b(t_pp *data, t_info *info)
 {
 	ft_push(&(data->stack1), &(data->stack2), info, 'b') ?
 		write(1, "pb\n", 3) : 0;
+	data->nb_actions += 1;
 }

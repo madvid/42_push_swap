@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:11 by mdavid            #+#    #+#             */
-/*   Updated: 2020/04/30 15:25:13 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/10 13:47:14 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 // del
 # include <stdio.h>
+# include <stdlib.h>
 // del
 
 typedef	struct	s_info
@@ -32,6 +33,7 @@ typedef	struct	s_pp
 	size_t		tot_len;
 	int			**stack1;
 	int			**stack2;
+	int			nb_actions;
 }				t_pp;
 
 /*
@@ -71,6 +73,7 @@ void	pp_print_addr(t_pp data, t_info info, int i_stack);
 void	pp_print_2stack_full(t_pp data, t_info info);
 void	pp_print_1stack_full(t_pp data, t_info info, int i_stack);
 void	pp_print_2_info(t_info info);
+void	pp_print_stack_only(t_pp *data, t_info *info);
 
 
 /*
@@ -85,6 +88,7 @@ int		ft_issort(t_pp *data, t_info info, int croissant, char a_or_b);
 int		ft_both_issort(t_pp *data, t_info info);
 int		ft_comp(int nb1, int nb2, char a_or_b);
 int		ft_stack_issort(int **data, t_info info, char a_or_b);
+int		ft_stack_issort_t2b(int **data, t_info info, char a_or_b);
 
 
 /*
@@ -124,7 +128,9 @@ void	ft_push_back_2_a(t_pp *data, t_info *info);
 void	ft_push_back_2_b(t_pp *data, t_info *info);
 
 void	ft_info_cpy(t_info *copy, t_info info);
-void	ft_info_recover(t_info *copy, t_info *info);
+void	ft_info_back(t_info *copy, t_info *info);
+void	ft_info_recover(t_info *info, t_pp *data);
+int		ft_protect(t_pp *data, t_info info, char a_or_b);
 void	ft_bottom_up_rotate(t_pp *data, t_info info, char a_or_b);
 
 
