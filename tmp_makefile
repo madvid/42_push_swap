@@ -1,0 +1,221 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/11 16:48:33 by weilin            #+#    #+#              #
+#    Updated: 2020/05/22 15:20:56 by md4              ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+PS = push_swap
+CHK = checker
+CM = common
+LIB = libft
+
+CC = clang
+FLAGS = -Wall -Wextra -Werror -g -I $(INC_DIR) #-fsanitize=address -fstack-protector -fsanitize=undefined
+RM = rm -rf
+
+### DIRECTORIES VARIABLES: ###
+
+CCH_DIR = cache/
+INC_DIR = include/
+SRC_DIR = src/
+LIB_DIR = libft/
+CM_DIR = common/
+PS_DIR = push_swap/
+CHK_DIR = checker/
+LIB_SRC_DIR = src/libft/
+CM_SRC_DIR = src/common/
+PS_SRC_DIR = src/push_swap/
+CHK_SRC_DIR = src/checker/
+LIB_OBJ_DIR = cache/libft/
+CM_OBJ_DIR = cache/common/
+PS_OBJ_DIR = cache/push_swap/
+CHK_OBJ_DIR = cache/checker/
+
+### SOURCES AND OBJECTS VARIABLES: ###
+
+LIB_FILES = ft_atoi \
+			ft_bzero \
+			ft_eraser \
+			int_tab_dup \
+			ft_isdigit \
+			ft_isnumber \
+			ft_free_table_str \
+			ft_memalloc \
+			ft_memset \
+			ft_putchar \
+			ft_putnbr \
+			ft_putstr \
+			ft_strcmp \
+			ft_strcpy \
+			ft_strdel \
+			ft_strdup \
+			ft_strlen \
+			ft_strnew \
+			ft_strsplit \
+			ft_table_2_str \
+			ft_table_int \
+			ft_table_nb_char \
+			ft_table_str \
+			ft_tablecpy \
+			ft_tablecpy_wtht_motif \
+			ft_tablelen
+
+LIB_SRC = $(addprefix $(SRC_DIR), $(addprefix $(LIB_DIR),$(addsuffix .c,$(LIB_FILES))))
+LIB_OBJ = $(addprefix $(CCH_DIR), $(addprefix $(LIB_DIR),$(addsuffix .o,$(LIB_FILES))))
+
+CM_FILES =	check_args \
+			parser 
+
+CM_SRC = $(addprefix $(SRC_DIR), $(addprefix $(CM_DIR),$(addsuffix .c,$(CM_FILES))))
+CM_OBJ = $(addprefix $(CCH_DIR), $(addprefix $(CM_DIR),$(addsuffix .o,$(CM_FILES))))
+
+CHK_FILES =	checker \
+			init_tab_actions \
+			check_actions
+
+CHK_SRC = $(addprefix $(SRC_DIR), $(addprefix $(CHK_DIR),$(addsuffix .c,$(CHK_FILES))))
+CHK_OBJ = $(addprefix $(CCH_DIR), $(addprefix $(CHK_DIR),$(addsuffix .o,$(CHK_FILES))))
+
+PS_FILES =	action_list \
+			final_opti \
+			ft_issort \
+			ft_table_nb_motif \
+			ft_check_full \
+			naive_test_sorts \
+			optimal_small_sort \
+			push_back \
+			push_swap \
+			quicksort \
+			quicksort_2stacks \
+			rev_rotate \
+			rotate \
+			stack_split \
+			stat_tools \
+			sort_stack1 \
+			sort_stack2 \
+			swap push \
+			tools_info \
+			tools_intab \
+			tools_print
+
+PS_SRC = $(addprefix $(SRC_DIR), $(addprefix $(PS_DIR),$(addsuffix .c,$(PS_FILES))))
+PS_OBJ = $(addprefix $(CCH_DIR), $(addprefix $(PS_DIR),$(addsuffix .o,$(PS_FILES))))
+
+### COLORS ###
+
+NOC = \033[0m
+BOLD = \033[1m
+UNDERLINE = \033[4m
+BLACK = \033[1;30m
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+BLUE = \033[1;34m
+VIOLET = \033[1;35m
+CYAN = \033[1;36m
+WHITE = \033[1;37m
+
+### RULES: ###
+
+all: $(PS) $(CHK)
+
+show:
+	@echo "$(GREEN) >>> FILES VATIABLES <<< $(NOC)"
+	@echo "$(YELLOW)LIB_FILES=$(NOC) $(LIB_FILES)\n"
+	@echo "$(YELLOW)CM_FILES=$(NOC) $(CM_FILES)\n"
+	@echo "$(YELLOW)PS_FILES=$(NOC) $(PS_FILES)\n"
+	@echo "$(YELLOW)CHK_FILES=$(NOC) $(CHK_FILES)\n"
+	@echo "$(GREEN) >>> SOURCES VATIABLES <<< $(NOC)"
+	@echo "$(YELLOW)LIB_SRC=$(NOC) $(LIB_SRC)\n"
+	@echo "$(YELLOW)CM_SRC=$(NOC) $(CM_SRC)\n"
+	@echo "$(YELLOW)PS_SRC=$(NOC) $(PS_SRC)\n"
+	@echo "$(YELLOW)CHK_SRC=$(NOC) $(CHK_SRC)\n"
+	@echo "$(GREEN) >>> OBJECTS VATIABLES <<< $(NOC)"
+	@echo "$(YELLOW)LIB_OBJ=$(NOC) $(LIB_OBJ)\n"
+	@echo "$(YELLOW)CM_OBJ =$(NOC) $(CM_OBJ)\n"
+	@echo "$(YELLOW)PS_OBJ=$(NOC) $(PS_OBJ)\n"
+	@echo "$(YELLOW)CHK_OBJ =$(NOC) $(CHK_OBJ)\n"
+
+lib_a: $(LIB_OBJ)
+	@echo "$(GREEN) Creation of the library: libft.a from libft objects$(NOC)"
+	@ar rcs libraries/$(LIB).a $(LIB_OBJ)
+
+$(LIB_OBJ_DIR)%.o: $(LIB_SRC_DIR)%.c $(CCH_DIR)
+	@echo "$(VIOLET) library -- $(YELLOW)compiling:$(NOC) $(BLUE)$<$(NOC)"
+	$(CC) $(FLAGS) -o $@ -c $<
+
+$(CM_OBJ_DIR)%.o: $(CM_SRC_DIR)%.c $(CCH_DIR) lib_a
+	@echo "$(VIOLET) common$(NOC) -- $(YELLOW)compiling:$(NOC) $<"
+	$(CC) $(FLAGS) -o $@ -c $<
+
+$(PS_OBJ_DIR)%.o: $(PS_SRC_DIR)%.c $(CCH_DIR) lib_a
+	@echo "$(VIOLET) push_swap$(NOC) -- $(YELLOW)compiling:$(NOC) $(BLUE)$<$(NOC)"
+	$(CC) $(FLAGS) -o $@ -c $<
+
+$(CHK_OBJ_DIR)%.o: $(CHK_SRC_DIR)%.c $(CCH_DIR) lib_a
+	@echo "$(VIOLET) checker$(NOC) -- $(YELLOW)compiling: $(NOC) $(BLUE)$<$(NOC)"
+	$(CC) $(FLAGS)  -o $@ -c $<
+
+$(PS): $(CM_OBJ) $(PS_OBJ)
+	@echo "$(RED)Creation of executable PUSH_SWAP$(NOC)"
+	ls
+	ls libraries
+	$(CC) $(FLAGS) -v -L libraries/ -l ft -o $@ $(PS_OBJ) $(CM_OBJ)
+
+$(CHK): $(CM_OBJ) $(CHK_OBJ)
+	@echo "$(RED)Creation of executable CHECKER$(NOC)"
+	$(CC) $(FLAGS) -L libraries/ -l ft -o $@ $(CHK_OBJ) $(CM_OBJ)
+
+#$(LIB_OBJ): $(LIB_SRC) $(CCH_DIR)
+#	@echo "$(VIOLET) library -- $(YELLOW)compiling:$(NOC) $(BLUE)$<$(NOC)"
+#	$(CC) $(FLAGS) -o $@ -c $<
+
+#$(CM_OBJ): $(CM_SRC) lib_a
+#	@echo "$(VIOLET) common$(NOC) -- $(YELLOW)compiling:$(NOC) $<"
+#	$(CC) $(FLAGS) -o $@ -c $< 
+
+#$(PS_OBJ): $(PS_SRC) $(CM_OBJ)
+#	@echo "$(VIOLET) push_swap$(NOC) -- $(YELLOW)compiling:$(NOC) $(BLUE)$<$(NOC)"
+#	$(CC) $(FLAGS) -o $@ -c $<
+
+#$(CHK_OBJ): $(CHK_SRC) $(CM_OBJ)
+#	@echo "$(VIOLET) checker$(NOC) -- $(YELLOW)compiling: $(NOC) $(BLUE)$<$(NOC)"
+#	$(CC) $(FLAGS) -o $@ -c $<
+
+$(CCH_DIR):
+	@mkdir -p $@
+	@mkdir -p $(CCH_DIR)$(LIB_DIR)
+	@mkdir -p $(CCH_DIR)$(CM_DIR)
+	@mkdir -p $(CCH_DIR)$(PS_DIR)
+	@mkdir -p $(CCH_DIR)$(CHK_DIR)
+	@mkdir -p libraries
+
+
+##$(CM_OBJ): $(CM_SRC)
+##	@$(CC) $(FLAGS) -o $() $<
+
+##$(PS_OBJ): $(PS_SRC)
+##	@$(CC) $(FLAGS) -c $(PS_SRC) -o $(PS_OBJ)
+
+##$(CHK_OBJ): $(CHK_SRC)
+##	@$(CC) $(FLAGS) -c $(CHK_SRC) -o $(CHK_OBJ)
+
+clean:
+	$(RM) $(CCH_DIR)
+
+fclean: clean
+	$(RM) $(CHK) $(PS) libraries
+
+re: fclean
+	$(MAKE) all
+
+norm:
+	norminette $(CM_SRC) $(PS_SRC) $(CHK_SRC) $(INC_DIR) | grep -v Norme -B1 || true
+
+.PHONY: all clean fclean re norm lib_a

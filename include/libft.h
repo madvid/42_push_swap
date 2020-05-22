@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdavid <mdavid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 13:11:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/11 13:19:51 by mdavid           ###   ########.fr       */
+/*   Updated: 2020/05/22 19:27:57 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define LONG_MAX 9223372036854775807
 # include <unistd.h>
 # include <string.h>
+# ifndef LONG_MAX
+#  define LONG_MAX 9223372036854775807
+# endif
+# ifndef INTG_MAX
+#  define INTG_MAX 2147483647
+# endif
 
 typedef struct		s_list
 {
@@ -111,5 +116,13 @@ int					**ft_table_int(int nb_l, int nb_c);
 void				ft_table_int_init(int **table, int nb_l, int nb_c);
 void				ft_free_tabint(int **table, int nb_l);
 int					**ft_int_tab_dup(int **i_tab, int nb_pt);
+void				ft_free_table_str(char **table);
+char				**ft_table_str(size_t lenght, size_t width);
+void				ft_tablecpy(char **dest, char **src);
+void				ft_tablecpy_wtht_motif(char **dest, char **src,
+					char *motif);
+int					ft_tablelen(char **table);
+size_t				ft_table_nb_char(char **table);
+char				*ft_table_2_str(char **table);
 
 #endif

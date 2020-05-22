@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ft_tablecpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 13:21:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/19 17:23:48 by md4              ###   ########.fr       */
+/*   Created: 2020/05/19 14:12:24 by md4               #+#    #+#             */
+/*   Updated: 2020/05/19 17:12:34 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "libft.h"
 
 /*
-** Functions to read and check the actions given by user ('sa', 'sb', ...).
+** Function: ft_tablecpy
+** Paramaters:
+**		char **dest: destination table
+**		char **src: source table
+** Decription:
+**		Copy table src to table dest.
+** Return:
+**		None.
 */
-const char	**ft_init_tab_actions(void);
-int			ft_read_actions(const char **actions);
-int			ft_check_actions(char *buf, const char **actions);
 
-#endif
+void	ft_tablecpy(char **dest, char **src)
+{
+	size_t	i;
+
+	i = 0;
+	if (src == NULL || dest == NULL)
+		return ;
+	while (src[i] != NULL)
+	{
+		ft_strcpy(dest[i], src[i]);
+		i++;
+	}
+}

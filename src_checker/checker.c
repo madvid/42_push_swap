@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 13:21:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/19 17:23:48 by md4              ###   ########.fr       */
+/*   Created: 2020/02/29 13:20:21 by mdavid            #+#    #+#             */
+/*   Updated: 2020/05/22 02:03:42 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include <unistd.h>
+#include "checker.h"
+#include "common.h"
 
-/*
-** Functions to read and check the actions given by user ('sa', 'sb', ...).
-*/
-const char	**ft_init_tab_actions(void);
-int			ft_read_actions(const char **actions);
-int			ft_check_actions(char *buf, const char **actions);
+int			main(int ac, char **av)
+{
+	const char	**actions;
 
-#endif
+	if (check_args(ac, av) == 0)
+		return (0);
+	actions = ft_init_tab_actions();
+	(ft_read_actions(actions) == 1) ?
+		write(1, "OK\n", 3) : write(1, "KO\n", 3);
+	return (0);
+}

@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ft_table_nb_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 13:21:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/19 17:23:48 by md4              ###   ########.fr       */
+/*   Created: 2020/05/19 14:43:51 by md4               #+#    #+#             */
+/*   Updated: 2020/05/19 17:11:30 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "libft.h"
 
-/*
-** Functions to read and check the actions given by user ('sa', 'sb', ...).
-*/
-const char	**ft_init_tab_actions(void);
-int			ft_read_actions(const char **actions);
-int			ft_check_actions(char *buf, const char **actions);
+size_t	ft_table_nb_char(char **table)
+{
+	size_t	n_char;
+	size_t	l;
+	size_t	c;
 
-#endif
+	n_char = 0;
+	l = 0;
+	if (table == NULL)
+		return (0);
+	while (table[l] != NULL)
+	{
+		c = 0;
+		while (table[l][c] != '\0')
+		{
+			c++;
+			n_char++;
+		}
+		l++;
+	}
+	return (n_char);
+}

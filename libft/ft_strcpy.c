@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 13:21:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/19 17:23:48 by md4              ###   ########.fr       */
+/*   Created: 2019/04/11 17:44:57 by mdavid            #+#    #+#             */
+/*   Updated: 2020/05/15 15:47:14 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include <stdio.h>
 
-/*
-** Functions to read and check the actions given by user ('sa', 'sb', ...).
-*/
-const char	**ft_init_tab_actions(void);
-int			ft_read_actions(const char **actions);
-int			ft_check_actions(char *buf, const char **actions);
+char	*ft_strcpy(char *dst, const char *src)
+{
+	int		i;
 
-#endif
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
