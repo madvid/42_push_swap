@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 17:44:57 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/23 23:28:53 by md4              ###   ########.fr       */
+/*   Created: 2019/04/11 19:55:17 by mdavid            #+#    #+#             */
+/*   Updated: 2020/05/27 16:51:16 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+char	*ft_strchr(const char *s, int c)
 {
-	int		i;
+	size_t		i;
 
 	i = 0;
-	while (src[i] != '\0')
+	if (s[i] != '\0')
 	{
-		dst[i] = src[i];
-		i++;
+		while (s[i] != (const char)c && s[i] != '\0')
+			i++;
+		if (s[i] == '\0' && c != 0)
+			return (NULL);
+		return ((char*)(s + i));
 	}
-	dst[i] = '\0';
-	return (dst);
+	else if (s[i] == '\0' && c == '\0')
+		return ((char*)(s + i));
+	else
+		return (NULL);
 }

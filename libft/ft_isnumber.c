@@ -3,30 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:30:18 by mdavid            #+#    #+#             */
-/*   Updated: 2020/03/03 20:55:52 by weilin           ###   ########.fr       */
+/*   Updated: 2020/05/23 15:40:52 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "common.h"
 
 int		ft_isnumber(const char *str)
 {
 	int		i;
 
 	i = 0;
-	if (!str)
-		return ((int)STAT_ERR);
+	if (str == NULL)
+		return (0);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) == (int)STAT_ERR)
-			return ((int)STAT_ERR);
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
 		i++;
 	}
-	return ((int)STAT_OK);
+	return (1);
 }

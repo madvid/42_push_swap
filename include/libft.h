@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 13:11:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/22 19:27:57 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/26 11:58:45 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # endif
 # ifndef INTG_MAX
 #  define INTG_MAX 2147483647
+# endif
+# ifndef BUFF_SIZE
+#  define BUFF_SIZE 10
 # endif
 
 typedef struct		s_list
@@ -124,5 +127,7 @@ void				ft_tablecpy_wtht_motif(char **dest, char **src,
 int					ft_tablelen(char **table);
 size_t				ft_table_nb_char(char **table);
 char				*ft_table_2_str(char **table);
+int					get_next_line_lite(int fd, char **line);
+int					ft_memncat(char **main, char *add, int len);
 
 #endif

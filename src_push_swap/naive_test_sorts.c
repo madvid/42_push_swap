@@ -6,11 +6,12 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:57:31 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/19 17:30:16 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/25 23:39:21 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "common.h"
 
 void	insertion_sort_naive(t_pp *data, t_info *info)
 {

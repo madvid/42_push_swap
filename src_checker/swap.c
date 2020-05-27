@@ -6,11 +6,11 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:31:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 19:29:14 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/27 00:09:11 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 /*
 ** FUNCTION:	pp_swap
@@ -58,6 +58,7 @@ int		ft_swap(int **data, t_info info, char a_or_b)
 		data[top + 1] = tmp_addr;
 		return (1);
 	}
+	return (0);
 }
 
 /*
@@ -69,9 +70,14 @@ int		ft_swap(int **data, t_info info, char a_or_b)
 ** RETURN: None.
 */
 
-void	ft_s_a(t_pp *data, t_info info)
+int		ft_s_a(t_pp *data, t_info info)
 {
-	ft_swap(data->stack1, info, 'a') == 1 ? ft_add_actions(data, "sa\n") : 0;
+	int		err;
+
+	err = 0;
+	err = ft_swap(data->stack1, info, 'a');
+	return (err);
+
 }
 
 /*
@@ -83,9 +89,13 @@ void	ft_s_a(t_pp *data, t_info info)
 ** RETURN: None.
 */
 
-void	ft_s_b(t_pp *data, t_info info)
+int		ft_s_b(t_pp *data, t_info info)
 {
-	ft_swap(data->stack2, info, 'b') == 1 ? ft_add_actions(data, "sb\n") : 0;
+	int		err;
+
+	err = 0;
+	err = ft_swap(data->stack2, info, 'b');
+	return (err);
 }
 
 /*
@@ -96,14 +106,19 @@ void	ft_s_b(t_pp *data, t_info info)
 ** RETURN: None.
 */
 
-void	ft_swap_ss(t_pp *data, t_info info)
+int		ft_swap_ss(t_pp *data, t_info info)
 {
-	int		ret1;
-	int		ret2;
+		int		err;
 
-
-	ret1 = ft_swap(data->stack1, info, 'a');
-	ret2 = ft_swap(data->stack2, info, 'b');
-	if (ret1 == 1 && ret2 == 1)
-		ft_add_actions(data, "ss\n");
+	err = 0;
+	err = ft_swap(data->stack1, info, 'a');
+	if (err == 0)
+		return (0);
+	err = ft_swap(data->stack2, info, 'b');
+	if (err == 0)
+	{
+		ft_swap(data->stack1, info, 'a');
+		return (0);
+	}
+	return (1);
 }

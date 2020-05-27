@@ -6,11 +6,11 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 19:56:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 23:14:25 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/27 00:58:23 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 /*
 ** FUNCTION: ft_rev_rotate
@@ -40,32 +40,36 @@ void	ft_rev_rotate(int **stack, t_info info, char a_or_b)
 ** FUNCTION: ft_rr_a
 ** ARGUMENTS:	t_pp *data1
 ** DESCRIPTION:
-** 	Rotate all the elements down into the stack in data1 (via ft_rev_rotate).
-** 	Then it print 'rra'.
+** 		Rotate all the elements down into the stack1 (via ft_rev_rotate).
+** 	Return:
+**		1: if reverse rotation has been performed
+**		0: if reverse rotation has not been performed
 */
 
-void	ft_rr_a(t_pp *data, t_info info)
+int		ft_rr_a(t_pp *data, t_info info)
 {
 	if (info.len1 <= 1)
-		return ;
+		return (0);
 	ft_rev_rotate(data->stack1, info, 'a');
-	ft_add_actions(data, "rra\n");
+	return (1);
 }
 
 /*
 ** FUNCTION: ft_rr_b
 ** ARGUMENTS:	t_pp *data2
 ** DESCRIPTION:
-** 	Rotate all the elements down into the stack in data2 (via ft_rev_rotate).
-** 	Then it print 'rrb'.
+** 		Rotate all the elements down into the stack2 (via ft_rev_rotate).
+** 	Return:
+**		1: if reverse rotation has been performed
+**		0: if reverse rotation has not been performed
 */
 
-void	ft_rr_b(t_pp *data, t_info info)
+int		ft_rr_b(t_pp *data, t_info info)
 {
 	if (info.len2 <= 1)
-		return ;
+		return (0);
 	ft_rev_rotate(data->stack2, info, 'b');
-	ft_add_actions(data, "rrb\n");
+	return (1);
 }
 
 /*
@@ -78,11 +82,13 @@ void	ft_rr_b(t_pp *data, t_info info)
 ** 	Then it print 'rrr'.
 */
 
-void	ft_rrr(t_pp *data, t_info info)
+int		ft_rrr(t_pp *data, t_info info)
 {
-	if (info.len1 <= 1 && info.len2 <= 1)
-		return ;
-	ft_rev_rotate(data->stack2, info, 'b');
-	ft_rev_rotate(data->stack1, info, 'a');
-	ft_add_actions(data, "rrr\n");
+	if (info.len1 > 1 && info.len2 > 1)
+	{
+		ft_rev_rotate(data->stack2, info, 'b');
+		ft_rev_rotate(data->stack1, info, 'a');
+		return (1);
+	}
+	return (0);
 }

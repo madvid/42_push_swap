@@ -6,7 +6,7 @@
 #    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 10:48:33 by mdavid            #+#    #+#              #
-#    Updated: 2020/05/22 18:08:17 by md4              ###   ########.fr        #
+#    Updated: 2020/05/26 14:00:40 by md4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ FLAGS = -Wall -Wextra -Werror -g -I$(INC_DIR)#-fsanitize=address -fstack-protect
 ### SOURCES AND OBJECTS VARIABLES ###
 
 CM_FILES =	check_args \
-			parser 
+			common_tools \
+			ft_issort \
+			parser
 
 CM_SRC = $(addsuffix .c,$(CM_FILES))
 CM_OBJ = $(CM_SRC:.c=.o)

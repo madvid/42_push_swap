@@ -6,11 +6,11 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:45:42 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 19:26:54 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/27 00:33:12 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 /*
 ** FUNCTION: ft_bottom_up_rotate
@@ -62,12 +62,12 @@ void	ft_rotate(int **stack, t_info info, char a_or_b)
 ** 	Then it print 'ra'.
 */
 
-void	ft_r_a(t_pp *data, t_info info)
+int		ft_r_a(t_pp *data, t_info info)
 {
 	if (info.len1 <= 1)
-		return ;
+		return (0);
 	ft_rotate(data->stack1, info, 'a');
-	ft_add_actions(data, "ra\n");
+	return (1);
 }
 
 /*
@@ -78,12 +78,12 @@ void	ft_r_a(t_pp *data, t_info info)
 ** 	Then it print 'rb'.
 */
 
-void	ft_r_b(t_pp *data, t_info info)
+int		ft_r_b(t_pp *data, t_info info)
 {
 	if (info.len2 <= 1)
-		return ;
+		return (0);
 	ft_rotate(data->stack2, info, 'b');
-	ft_add_actions(data, "rb\n");
+	return (1);
 }
 
 /*
@@ -96,11 +96,13 @@ void	ft_r_b(t_pp *data, t_info info)
 ** 	Then it print 'rr'.
 */
 
-void	ft_rr(t_pp *data, t_info info)
+int		ft_rr(t_pp *data, t_info info)
 {
-	if (info.len1 <= 1 && info.len2 <= 1)
-		return ;
-	ft_rotate(data->stack2, info, 'b');
-	ft_rotate(data->stack1, info, 'a');
-	ft_add_actions(data, "rr\n");
+	if (info.len1 > 1 && info.len2 > 1)
+	{
+		ft_rotate(data->stack2, info, 'b');
+		ft_rotate(data->stack1, info, 'a');
+		return (1);
+	}
+	return (0);
 }

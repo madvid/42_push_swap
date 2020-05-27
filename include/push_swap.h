@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:11 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/21 12:53:38 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/27 15:17:59 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 # include <stdlib.h>
 
+# ifndef S_INFO
+#  define S_INFO
 typedef	struct	s_info
 {
 	size_t		tot_len;
@@ -22,30 +24,34 @@ typedef	struct	s_info
 	size_t		start1;
 	size_t		start2;
 }				t_info;
-
+# endif
+# ifndef S_PP
+#  define S_PP
 typedef	struct	s_pp
 {
 	size_t		tot_len;
 	int			**stack1;
 	int			**stack2;
-	char		**buf_act;
 	char		**act_list;
 	size_t		i_act;
 	size_t		nb_actions;
 }				t_pp;
+# endif
 
 /*
-** function(s) for initialization
-** File(s): push_swap.c
+** functions for printing table of *int
+** File(s): tools_print.c
 */
-void			ft_initialization(t_pp **data, t_info **info, size_t total);
-void			ft_destroy(t_pp *data, t_info *info, int *int_stack);
-void			ft_fill_stacks(int **int_stack, t_pp **data, char **av,
-				size_t total);
+void			pp_print_addr(t_pp data, t_info info, int i_stack);
+void			pp_print_2stack_full(t_pp data, t_info info);
+void			pp_print_1stack_full(t_pp data, t_info info, int i_stack);
+void			pp_print_2_info(t_info info);
+void			pp_print_stack_only(t_pp *data, t_info *info);
+void			pp_print_act_list(char **act_list);
 
 /*
 ** functions for swapping: sa, sb, ss, pa, pb
-** Files(s): swap.c push.c
+** Files(s): swap.c,  push.c, rotate.c, rev_rotate.c
 */
 void			special_swap(t_pp *data, int i, int j);
 int				ft_swap(int **data, t_info info, char a_or_b);
@@ -64,31 +70,6 @@ void			ft_rev_rotate(int **stack, t_info info, char a_or_b);
 void			ft_rr_a(t_pp *data, t_info info);
 void			ft_rr_b(t_pp *data, t_info info);
 void			ft_rrr(t_pp *data, t_info info);
-
-/*
-** functions for printing table of *int
-** File(s): tools_print.c
-*/
-void			pp_print_addr(t_pp data, t_info info, int i_stack);
-void			pp_print_2stack_full(t_pp data, t_info info);
-void			pp_print_1stack_full(t_pp data, t_info info, int i_stack);
-void			pp_print_2_info(t_info info);
-void			pp_print_stack_only(t_pp *data, t_info *info);
-void			pp_print_act_list(char **act_list);
-
-/*
-** functions for min, max, average, median
-** File(s): ft_stat_tools.c ft_issort.c
-*/
-int				ft_get_pos_min(int **stack, t_info info, char a_or_b);
-int				ft_get_pos_max(int **stack, t_info info, char a_or_b);
-int				ft_get_median(int *median, int **stack, size_t nb_elem);
-int				ft_get_average(int *avg, int **stack, size_t nb_elem);
-int				ft_issort(t_pp *data, t_info info, int croissant, char a_or_b);
-int				ft_both_issort(t_pp *data, t_info info);
-int				ft_comp(int nb1, int nb2, char a_or_b);
-int				ft_stack_issort(int **data, t_info info, char a_or_b);
-int				ft_stack_issort_t2b(int **data, t_info info, char a_or_b);
 
 /*
 ** functions for sort the table of *int
@@ -150,6 +131,20 @@ int				ft_table_nb_motif(char **table, char *motif);
 int				ft_final_opti_1(t_pp *data);
 int				ft_final_opti_2(t_pp *data, char **table, int len, int d);
 int 		    ft_check_full(char **table, char *motif);
+
+/*
+** functions to check if stacks are sorted and functions for median and average
+** file(s): sorting.c stat_tools.c
+*/
+int				ft_both_issort(t_pp *data, t_info info);
+int				ft_comp(int nb1, int nb2, char a_or_b);
+int				ft_stack_issort(int **stack, t_info info, char a_or_b);
+int				ft_stack_issort_t2b(int **stack, t_info info, char a_or_b);
+int				ft_issort(t_pp *data, t_info info, int croissant, char a_or_b);
+int				ft_get_pos_min(int **stack, t_info info, char a_or_b);
+int				ft_get_pos_max(int **stack, t_info info, char a_or_b);
+int				ft_get_median(int *median, int **stack, size_t nb_elem);
+int				ft_get_average(int *avg, int **stack, size_t nb_elem);
 
 /*
 ** temporary

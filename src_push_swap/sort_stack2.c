@@ -6,11 +6,12 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 12:31:52 by md4               #+#    #+#             */
-/*   Updated: 2020/05/16 19:22:39 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/25 23:41:17 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "common.h"
 
 /*
 ** Function: ft_sort_small_stack_b (type int)

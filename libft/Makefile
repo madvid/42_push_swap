@@ -6,7 +6,7 @@
 #    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 10:48:33 by mdavid            #+#    #+#              #
-#    Updated: 2020/05/22 19:19:08 by md4              ###   ########.fr        #
+#    Updated: 2020/05/26 13:22:23 by md4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,13 @@ LIB_FILES =	ft_atoi \
 			ft_isdigit \
 			ft_isnumber \
 			ft_memalloc \
+			ft_memcpy \
+			ft_memncat \
 			ft_memset \
 			ft_putchar \
 			ft_putnbr \
 			ft_putstr \
+			ft_strchr \
 			ft_strcmp \
 			ft_strcpy \
 			ft_strdel \
@@ -38,6 +41,7 @@ LIB_FILES =	ft_atoi \
 			ft_strlen \
 			ft_strnew \
 			ft_strsplit \
+			ft_strsub \
 			ft_table_2_str \
 			ft_tablecpy \
 			ft_tablecpy_wtht_motif \
@@ -45,7 +49,8 @@ LIB_FILES =	ft_atoi \
 			ft_tablelen \
 			ft_table_nb_char \
 			ft_table_str \
-			int_tab_dup
+			int_tab_dup \
+			get_next_line_lite
 
 LIB_SRC = $(addsuffix .c,$(LIB_FILES))
 LIB_OBJ = $(LIB_SRC:.c=.o)

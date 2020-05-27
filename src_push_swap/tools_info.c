@@ -6,10 +6,11 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 19:22:26 by md4               #+#    #+#             */
-/*   Updated: 2020/05/16 19:10:47 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/24 02:38:18 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "push_swap.h"
 
 /*
@@ -68,7 +69,7 @@ void	ft_info_back(t_info *copy, t_info *info)
 void	ft_info_recover(t_info *info, t_pp *data)
 {
 	if (data->stack2[info->start2] == NULL)
-		while (data->stack2[info->start2] == NULL && info->len2 > 0)
+		while (data->stack2[info->start2] == NULL && info->len2 > 1)
 		{
 			info->start2++;
 			info->len2--;

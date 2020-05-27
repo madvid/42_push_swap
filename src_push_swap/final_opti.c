@@ -6,10 +6,11 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/16 22:02:22 by md4               #+#    #+#             */
-/*   Updated: 2020/05/22 19:29:33 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/28 00:34:38 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "push_swap.h"
 #include "libft.h"
 
@@ -27,7 +28,7 @@
 **		0: if memory allocation of NULL pointer was encountered.
 */
 
-int		ft_final_opti_1(t_pp *data)
+/*int		ft_final_opti_1(t_pp *data)
 {
 	char	**table;
 	int		len;
@@ -51,6 +52,31 @@ int		ft_final_opti_1(t_pp *data)
 	len = ft_tablelen(data->act_list);
 	table = ft_table_str(len - d, 4);
 	return (ft_final_opti_2(data, table, len, d));
+}*/
+
+/* a tester*/
+int		ft_final_opti_1(t_pp *data)
+{
+	char	**table;
+	int		len;
+	int		d;
+
+	table = NULL;
+	ft_optimize_act_sequence(data->act_list);
+	len = ft_tablelen(data->act_list);
+	d = ft_table_nb_motif(data->act_list, "000\n");
+	//printf("valeur de len = %d -- valeur de d = %d\n", len, d);
+	table = ft_table_str(len - d, 4);
+	if (table == NULL || d == -1 || len == -1 || data->act_list == NULL)
+	{
+		ft_free_table_str(table);
+		return (0);
+	}
+	ft_tablecpy_wtht_motif(table, data->act_list, "000\n");
+	ft_free_table_str(data->act_list);
+	data->act_list = table;
+	//pp_print_act_list(data->act_list);
+	return (1);
 }
 
 /*
@@ -67,7 +93,7 @@ int		ft_final_opti_1(t_pp *data)
 **		0: if memory allocation of NULL pointer was encountered.
 */
 
-int		ft_final_opti_2(t_pp *data, char **table, int len, int d)
+/*int		ft_final_opti_2(t_pp *data, char **table, int len, int d)
 {
 	if (table == NULL || d == -1 || len == -1 || data->act_list == NULL)
 	{
@@ -79,4 +105,4 @@ int		ft_final_opti_2(t_pp *data, char **table, int len, int d)
 	ft_free_table_str(data->act_list);
 	data->act_list = table;
 	return (1);
-}
+}*/

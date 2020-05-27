@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 10:04:37 by md4               #+#    #+#             */
-/*   Updated: 2020/05/22 19:40:25 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/28 00:25:46 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	ft_clear_buf(char **buffer)
 **	None
 */
 
-int		ft_add_actions(t_pp *data, char *act)
+/*int		ft_add_actions(t_pp *data, char *act)
 {
 	char	**table;
 
@@ -172,5 +172,32 @@ int		ft_add_actions(t_pp *data, char *act)
 		ft_strcpy(data->buf_act[data->i_act], act);
 		data->i_act++;
 	}
+	return (1);
+}*/
+
+// a tester
+int		ft_add_actions(t_pp *data, char *act)
+{
+	char	**table;
+
+	table = NULL;
+	if (data->act_list[data->i_act] != NULL)
+	{
+		ft_strcpy(data->act_list[data->i_act], act);
+		data->i_act++;
+		return (1);
+	}
+	table = ft_table_str(ft_tablelen(data->act_list) + data->tot_len, 4);
+	if (table == NULL)
+	{
+		ft_free_table_str(data->act_list);
+		write(1, "Error, memory allocation failed or buffer is empty\n", 51);
+		return (0);
+	}
+	ft_tablecpy(table, data->act_list);
+	ft_strcpy(table[data->i_act], act);
+	ft_free_table_str(data->act_list);
+	data->act_list = table;
+	data->i_act++;
 	return (1);
 }
