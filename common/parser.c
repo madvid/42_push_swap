@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 22:09:55 by md4               #+#    #+#             */
-/*   Updated: 2020/05/26 00:38:39 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/29 02:18:39 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 **		NULL:
 */
 
-void		put_av_2_tab(int ac, char **av, char ***tab)
+void	put_av_2_tab(int ac, char **av, char ***tab)
 {
 	int		i;
 
@@ -38,12 +38,12 @@ void		put_av_2_tab(int ac, char **av, char ***tab)
 	if ((*tab = (char**)malloc(sizeof(char*) * ac)) == NULL)
 		return ;
 	(*tab)[ac - 1] = NULL;
-	while(++i < ac)
+	while (++i < ac)
 	{
 		(*tab)[i - 1] = (char*)malloc(sizeof(char) * (ft_strlen(av[i]) + 1));
 		if ((*tab)[i - 1] == NULL)
 		{
-			while(--i >= 0)
+			while (--i >= 0)
 				free((*tab)[i]);
 			free(*tab);
 			return ;
@@ -69,9 +69,11 @@ int		ft_is_digits_and_spaces(char *str)
 
 	i = 0;
 	if (str == NULL)
+		return (0);
 	while (str[i] != '\0')
 	{
-		if (ft_isdigit((int)str[i]) == 0 && str[i] != ' ')
+		if (ft_isdigit((int)str[i]) == 0 && str[i] != ' '
+			&& str[i] != '-')
 			return (0);
 		i++;
 	}
@@ -90,7 +92,7 @@ int		ft_is_digits_and_spaces(char *str)
 **		NULL:
 */
 
-int			parser(int ac, char **av, char ***tab)
+int		parser(int ac, char **av, char ***tab)
 {
 	if (ac < 2)
 	{

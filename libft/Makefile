@@ -6,7 +6,7 @@
 #    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 10:48:33 by mdavid            #+#    #+#              #
-#    Updated: 2020/05/26 13:22:23 by md4              ###   ########.fr        #
+#    Updated: 2020/05/29 00:49:58 by md4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,10 +73,10 @@ LIB_OBJ = $(LIB_SRC:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : $(LIB_OBJ)
+$(NAME) : $(LIB_OBJ) $(INC_DIR)$(INCLUDE)
 	@mkdir -p $(LIB_DIR)
 	@echo " $(VIOLET)[ar rcs] $(CYAN)Constructing librairy:$(NOC) $(LIB_DIR)$@"
-	@ar rcs $(LIB_DIR)$(NAME) $^
+	@ar rc $(LIB_DIR)$(NAME) $^
 	@echo " $(VIOLET)[ar rcs] $(NOC)--> $(GREEN)Static librairy created:$(NOC) $(LIB_DIR)$@"
 
 %.o : %.c

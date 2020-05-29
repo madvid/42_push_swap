@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:02:17 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/26 11:52:14 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/28 01:31:52 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "checker.h"
 #include "libft.h"
 
-void		ft_tab_alloc(char ***str)
+void	ft_tab_alloc(char ***str)
 {
 	int		i;
 

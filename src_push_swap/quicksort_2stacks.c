@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:15:13 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/26 00:45:07 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/28 01:07:22 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int		ft_check_for_return(t_pp *data, t_info info)
 		if (data->stack1[info.start1] == NULL)
 			return (1);
 	if (info.start1 != info.tot_len && info.start2 != info.tot_len)
-		if (data->stack1[info.start1] == NULL || data->stack2[info.start2] == NULL)
+		if (data->stack1[info.start1] == NULL
+			|| data->stack2[info.start2] == NULL)
 			return (1);
 	return (0);
 }
@@ -82,16 +83,19 @@ void	quicksort_2stacks(t_pp *data, t_info info, char a_or_b)
 			ft_push_back(data, &info, ft_not_a_or_b(a_or_b));
 		return ;
 	}
-	if (ft_issort(data, info, 1, 'a') == 1 && ft_issort(data, info, 0, 'b') != 1)
+	if (ft_issort(data, info, 1, 'a') == 1
+		&& ft_issort(data, info, 0, 'b') != 1)
 	{
 		quicksort_2stacks(data, info, 'b');
 		ft_info_recover(&info, data);
 	}
-	if (ft_issort(data, info, 1, 'a') != 1 && ft_issort(data, info, 0, 'b') == 1)
+	if (ft_issort(data, info, 1, 'a') != 1
+		&& ft_issort(data, info, 0, 'b') == 1)
 	{
 		quicksort_2stacks(data, info, 'a');
 		ft_info_recover(&info, data);
 	}
-	if (ft_issort(data, info, 1, 'a') != 1 && ft_issort(data, info, 0, 'b') != 1)
+	if (ft_issort(data, info, 1, 'a') != 1
+		&& ft_issort(data, info, 0, 'b') != 1)
 		quicksort_2stacks(data, info, 'a');
 }

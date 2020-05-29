@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 10:04:37 by md4               #+#    #+#             */
-/*   Updated: 2020/05/28 00:25:46 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/28 01:13:03 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,34 +148,6 @@ void	ft_clear_buf(char **buffer)
 **	None
 */
 
-/*int		ft_add_actions(t_pp *data, char *act)
-{
-	char	**table;
-
-	if (data->i_act == data->tot_len)
-	{
-		ft_optimize_act_sequence(data->buf_act);
-		if ((table = ft_buf_to_list(data->act_list, data->buf_act)) == NULL)
-		{
-			ft_free_table_str(data->act_list);
-			ft_free_table_str(data->buf_act);
-			write(1, "Error, memory allocation failed or buffer is empty\n", 51);
-			return (0);
-		}
-		ft_free_table_str(data->act_list);
-		data->act_list = table;
-		ft_clear_buf(data->buf_act);
-		data->i_act = 0;
-	}
-	if (data->i_act < data->tot_len)
-	{
-		ft_strcpy(data->buf_act[data->i_act], act);
-		data->i_act++;
-	}
-	return (1);
-}*/
-
-// a tester
 int		ft_add_actions(t_pp *data, char *act)
 {
 	char	**table;

@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:31:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 19:29:14 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/28 01:07:50 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	ft_swap_ss(t_pp *data, t_info info)
 {
 	int		ret1;
 	int		ret2;
-
 
 	ret1 = ft_swap(data->stack1, info, 'a');
 	ret2 = ft_swap(data->stack2, info, 'b');

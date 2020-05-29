@@ -6,16 +6,14 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:21 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 18:24:42 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/29 03:24:55 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 #include "checker.h"
 #include "common.h"
 #include "libft.h"
-
 
 /*
 ** Function: ft_check_action
@@ -30,29 +28,27 @@
 
 char	*ft_check_action(char *action)
 {
-	if (action == NULL)
-		return (NULL);
-	if (ft_strcmp("sa", action) == 0)
+	if (action != NULL && ft_strcmp("sa", action) == 0)
 		return ("sa");
-	else if (ft_strcmp("sb", action) == 0)
+	else if (action != NULL && ft_strcmp("sb", action) == 0)
 		return ("sb");
-	else if (ft_strcmp("ss", action) == 0)
+	else if (action != NULL && ft_strcmp("ss", action) == 0)
 		return ("ss");
-	else if (ft_strcmp("pa", action) == 0)
+	else if (action != NULL && ft_strcmp("pa", action) == 0)
 		return ("pa");
-	else if (ft_strcmp("pb", action) == 0)
+	else if (action != NULL && ft_strcmp("pb", action) == 0)
 		return ("pb");
-	else if (ft_strcmp("ra", action) == 0)
+	else if (action != NULL && ft_strcmp("ra", action) == 0)
 		return ("ra");
-	else if (ft_strcmp("rb", action) == 0)
+	else if (action != NULL && ft_strcmp("rb", action) == 0)
 		return ("rb");
-	else if (ft_strcmp("rr", action) == 0)
+	else if (action != NULL && ft_strcmp("rr", action) == 0)
 		return ("rr");
-	else if (ft_strcmp("rra", action) == 0)
+	else if (action != NULL && ft_strcmp("rra", action) == 0)
 		return ("rra");
-	else if (ft_strcmp("rrb", action) == 0)
+	else if (action != NULL && ft_strcmp("rrb", action) == 0)
 		return ("rrb");
-	else if (ft_strcmp("rrr", action) == 0)
+	else if (action != NULL && ft_strcmp("rrr", action) == 0)
 		return ("rrr");
 	else
 		return (NULL);
@@ -121,14 +117,14 @@ int		ft_parse_and_init(int ac, char **av, t_pp **data, t_info **info, int **stac
 	if (ft_initialization(data, info, ft_tablelen(tab)) == 0)
 	{
 		ft_free_table_str(tab);
-		write (1, "Error, parsing or memory allocation issue\n", 42);
+		write(1, "Error, parsing or memory allocation issue\n", 42);
 		return (0);
 	}
 	ft_fill_stacks(stack, data, tab, ft_tablelen(tab));
 	if (*stack == NULL)
 	{
 		ft_destroy(*data, *info, *stack, tab);
-		write (1, "Error, parsing or memory allocation issue\n", 42);
+		write(1, "Error, parsing or memory allocation issue\n", 42);
 		return (0);
 	}
 	ft_free_table_str(tab);
@@ -166,8 +162,7 @@ int		main(int ac, char **av)
 	{
 		if ((action = ft_check_action(line)) == NULL)
 		{
-			write (1, "Error, action is not in the list\n", 33);
-			printf("not in list of action: %s\n", action);
+			ft_strdel(&line);
 			ft_destroy(data, info, int_stack, NULL);
 			return (0);
 		}
@@ -175,8 +170,7 @@ int		main(int ac, char **av)
 		ft_perform_action(data, info, action);
 	}
 	(info->len1 == info->tot_len && ft_issort(data, *info, 1, 'a') == 1) ?
-		 write(1, "OK\n", 3) : write(1, "KO\n", 3);
-	pp_print_1stack_full(*data, *info, 1);
+		write(1, "OK\n", 3) : write(1, "KO\n", 3);
 	ft_destroy(data, info, int_stack, NULL);
 	ft_strdel(&line);
 	return (0);

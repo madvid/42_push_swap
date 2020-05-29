@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:11 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 15:17:59 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/29 02:33:31 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # ifndef S_INFO
 #  define S_INFO
+
 typedef	struct	s_info
 {
 	size_t		tot_len;
@@ -27,6 +28,7 @@ typedef	struct	s_info
 # endif
 # ifndef S_PP
 #  define S_PP
+
 typedef	struct	s_pp
 {
 	size_t		tot_len;
@@ -93,7 +95,6 @@ void			quicksort_2stacks_init(t_pp *data1, t_pp *data2, t_info *info1,
 void			quicksort_2stacks(t_pp *data, t_info info, char a_or_b);
 int				ft_check_for_return(t_pp *data, t_info info);
 
-
 /*
 ** Others functions
 */
@@ -130,7 +131,7 @@ int				ft_add_actions(t_pp *data, char *act);
 int				ft_table_nb_motif(char **table, char *motif);
 int				ft_final_opti_1(t_pp *data);
 int				ft_final_opti_2(t_pp *data, char **table, int len, int d);
-int 		    ft_check_full(char **table, char *motif);
+int				ft_check_full(char **table, char *motif);
 
 /*
 ** functions to check if stacks are sorted and functions for median and average

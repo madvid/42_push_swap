@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 14:29:04 by md4               #+#    #+#             */
-/*   Updated: 2020/05/27 18:49:50 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/29 02:40:01 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char		*ft_table_2_str(char **table)
 	if (table == NULL && line == 0)
 		return (NULL);
 	n_char = ft_table_nb_char(table);
-	//if ((str = ft_strnew(n_char)) == NULL)
-	if ((str = ft_strnew(n_char + line)) == NULL)
+	//if ((str = ft_strnew(n_char + line)) == NULL)
+	if ((str = ft_strnew(n_char)) == NULL)
 		return (NULL);
 	ft_fill_str_w_tablestr(str, table);
 	return (str);

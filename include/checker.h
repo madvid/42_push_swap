@@ -6,16 +6,18 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 00:58:04 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/29 02:27:18 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
-#include <stdlib.h>
+
+# include <stdlib.h>
 
 # ifndef S_INFO
 #  define S_INFO
+
 typedef	struct	s_info
 {
 	size_t		tot_len;
@@ -27,6 +29,7 @@ typedef	struct	s_info
 # endif
 # ifndef S_PP
 #  define S_PP
+
 typedef	struct	s_pp
 {
 	size_t		tot_len;
@@ -44,27 +47,28 @@ typedef	struct	s_pp
 */
 char			*ft_check_action(char *action);
 void			ft_perform_action(t_pp *data, t_info *info, char *action);
-int				ft_parse_and_init(int ac, char **av, t_pp **data, t_info **info, int **stack);
+int				ft_parse_and_init(int ac, char **av, t_pp **data,
+				t_info **info, int **stack);
 
 /*
 ** functions for swapping: sa, sb, ss, pa, pb
 ** Files(s): swap.c,  push.c, rotate.c, rev_rotate.c
 */
-int		ft_push(int ***s_orig, int ***s_dest, t_info *info, char a_or_b);
-int		ft_p_a(t_pp *data, t_info *info);
-int		ft_p_b(t_pp *data, t_info *info);
-int		ft_swap(int **data, t_info info, char a_or_b);
-int		ft_s_a(t_pp *data, t_info info);
-int		ft_s_b(t_pp *data, t_info info);
-int		ft_swap_ss(t_pp *data, t_info info);
-void	ft_rotate(int **stack, t_info info, char a_or_b);
-int		ft_r_a(t_pp *data, t_info info);
-int		ft_r_b(t_pp *data, t_info info);
-int		ft_rr(t_pp *data, t_info info);
-void	ft_rev_rotate(int **stack, t_info info, char a_or_b);
-int		ft_rr_a(t_pp *data, t_info info);
-int		ft_rr_b(t_pp *data, t_info info);
-int		ft_rrr(t_pp *data, t_info info);
-
+int				ft_push(int ***s_orig, int ***s_dest, t_info *info,
+				char a_or_b);
+int				ft_p_a(t_pp *data, t_info *info);
+int				ft_p_b(t_pp *data, t_info *info);
+int				ft_swap(int **data, t_info info, char a_or_b);
+int				ft_s_a(t_pp *data, t_info info);
+int				ft_s_b(t_pp *data, t_info info);
+int				ft_swap_ss(t_pp *data, t_info info);
+void			ft_rotate(int **stack, t_info info, char a_or_b);
+int				ft_r_a(t_pp *data, t_info info);
+int				ft_r_b(t_pp *data, t_info info);
+int				ft_rr(t_pp *data, t_info info);
+void			ft_rev_rotate(int **stack, t_info info, char a_or_b);
+int				ft_rr_a(t_pp *data, t_info info);
+int				ft_rr_b(t_pp *data, t_info info);
+int				ft_rrr(t_pp *data, t_info info);
 
 #endif

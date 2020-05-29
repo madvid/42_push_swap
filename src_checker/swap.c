@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:31:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 00:09:11 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/28 01:20:47 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int		ft_s_a(t_pp *data, t_info info)
 	err = 0;
 	err = ft_swap(data->stack1, info, 'a');
 	return (err);
-
 }
 
 /*
@@ -108,7 +107,7 @@ int		ft_s_b(t_pp *data, t_info info)
 
 int		ft_swap_ss(t_pp *data, t_info info)
 {
-		int		err;
+	int		err;
 
 	err = 0;
 	err = ft_swap(data->stack1, info, 'a');

@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:25:00 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/28 00:29:39 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/28 01:14:15 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_stck_splt2a(t_pp *data, t_info *info,
 	info->len1 = 0;
 	ft_order(&order, data->stack2, info->len2);
 	while (count < info->len1 + info->len2
-		&& count_p < (info->len1 + info->len2 +  1) / 2)
+		&& count_p < (info->len1 + info->len2 + 1) / 2)
 	{
 		if (*data->stack2[info->start2] >= order)
 			count_p += ft_p_a(data, info);

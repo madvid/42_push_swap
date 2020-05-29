@@ -6,16 +6,18 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:02:59 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/27 15:54:32 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/29 02:30:49 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
 # define COMMON_H
-#include <stdlib.h>
+
+# include <stdlib.h>
 
 # ifndef S_INFO
 #  define S_INFO
+
 typedef	struct	s_info
 {
 	size_t		tot_len;
@@ -27,6 +29,7 @@ typedef	struct	s_info
 # endif
 # ifndef S_PP
 #  define S_PP
+
 typedef	struct	s_pp
 {
 	size_t		tot_len;
@@ -55,7 +58,8 @@ int				ft_iswithin_int(char *s);
 ** File(s): common_tools.c
 */
 int				ft_initialization(t_pp **data, t_info **info, size_t total);
-void			ft_destroy(t_pp *data, t_info *info, int *int_stack, char **tab);
+void			ft_destroy(t_pp *data, t_info *info, int *int_stack,
+				char **tab);
 void			ft_fill_stacks(int **int_stack, t_pp **data, char **av,
 				size_t total);
 void			pp_print_2stack_full(t_pp data, t_info info);
@@ -67,5 +71,4 @@ void			pp_print_1stack_full(t_pp data, t_info info, int i_stack);
 */
 int				ft_issort(t_pp *data, t_info info, int croissant, char a_or_b);
 
-
-#endif 
+#endif
