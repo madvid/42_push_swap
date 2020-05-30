@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 19:22:26 by md4               #+#    #+#             */
-/*   Updated: 2020/05/29 03:04:33 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 01:36:42 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_info_recover(t_info *info, t_pp *data)
 			info->start1++;
 			info->len1--;
 		}
-		while ( info->start2 > 0 && data->stack2[info->start2 - 1] != NULL)
+		while (info->start2 > 0 && data->stack2[info->start2 - 1] != NULL)
 		{
 			info->start2--;
 			info->len2++;

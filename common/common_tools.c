@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 15:30:59 by md4               #+#    #+#             */
-/*   Updated: 2020/05/29 02:12:12 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 00:58:30 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 **				total: length of int list received in arguments
 ** Description:
 ** 	Initialization of the differents struct and variables.
+** Return:
+**		1: If all memory allocation are done
+**		0: If there is a memory allocation issue
 */
 
 int		ft_initialization(t_pp **data, t_info **info, size_t total)
@@ -27,6 +30,7 @@ int		ft_initialization(t_pp **data, t_info **info, size_t total)
 	if (!(*data = (t_pp*)malloc(sizeof(t_pp)))
 		|| !(*info = (t_info*)malloc(sizeof(t_info))))
 	{
+		write(1, "Error\n", 6);
 		ft_destroy(*data, NULL, NULL, NULL);
 		return (0);
 	}
@@ -34,6 +38,7 @@ int		ft_initialization(t_pp **data, t_info **info, size_t total)
 		|| !((*data)->stack2 = (int**)malloc(sizeof(int*) * total))
 		|| !((*data)->act_list = ft_table_str(total, 4)))
 	{
+		write(1, "Error\n", 6);
 		ft_destroy(*data, *info, NULL, NULL);
 		return (0);
 	}
@@ -44,6 +49,40 @@ int		ft_initialization(t_pp **data, t_info **info, size_t total)
 	(*info)->len2 = 0;
 	(*info)->start1 = 0;
 	(*info)->start2 = total;
+	return (1);
+}
+
+/*
+** Function: ft_unicity_nb
+** Parameters:
+**		int *stack:
+**		size_t total: lenght of table containing the numbers
+** Description:
+**		Check if there is no repetition of a number
+** Return:
+**		1: If there is no repetition
+**		0: otherwise
+*/
+
+int		ft_unicity_nb(int *stack, size_t total)
+{
+	size_t		i;
+	size_t		j;
+	int			stock;
+
+	i = 0;
+	while (i < total)
+	{
+		stock = stack[i];
+		j = i + 1;
+		while (j < total)
+		{
+			if (stack[j] == stock)
+				return (0);
+			j++;
+		}
+		i++;
+	}
 	return (1);
 }
 
@@ -59,13 +98,16 @@ int		ft_initialization(t_pp **data, t_info **info, size_t total)
 **	In other words, it is the initialization function of the data structure.
 */
 
-void	ft_fill_stacks(int **int_stack, t_pp **data, char **tab, size_t total)
+int		ft_fill_stacks(int **int_stack, t_pp **data, char **tab, size_t total)
 {
 	size_t		i;
 
 	i = 0;
 	if (!((*int_stack) = (int*)malloc(sizeof(int) * total)))
-		return ;
+	{
+		write(1, "Error\n", 6);
+		return (0);
+	}
 	while (tab[i] != NULL && i < total)
 	{
 		(*int_stack)[i] = ft_atoi(tab[i]);
@@ -73,6 +115,12 @@ void	ft_fill_stacks(int **int_stack, t_pp **data, char **tab, size_t total)
 		(*data)->stack2[i] = NULL;
 		i++;
 	}
+	if (ft_unicity_nb(*int_stack, total) == 0)
+	{
+		write(1, "Error\n", 6);
+		return (0);
+	}
+	return (1);
 }
 
 /*
@@ -83,7 +131,7 @@ void	ft_fill_stacks(int **int_stack, t_pp **data, char **tab, size_t total)
 **		t_info *info: struct object related to info on stack1 and stack2
 **		int *int_stack: table of int containing the numbers of the list.
 ** Description:
-**	Free all variables/objects allocated within data and info.
+**		Free all variables/objects allocated within data and info.
 ** Return:
 **		None
 */
@@ -113,5 +161,6 @@ void	ft_destroy(t_pp *data, t_info *info, int *int_stack, char **tab)
 		free(int_stack);
 		int_stack = NULL;
 	}
-	ft_free_table_str(tab);
+	if (tab)
+		ft_free_table_str(tab);
 }

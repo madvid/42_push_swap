@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:21 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/29 03:24:55 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 00:50:09 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,22 +112,60 @@ int		ft_parse_and_init(int ac, char **av, t_pp **data, t_info **info, int **stac
 {
 	char		**tab;
 
+	tab = NULL;
 	if (parser(ac, av, &tab) == 0)
-		return (0);
-	if (ft_initialization(data, info, ft_tablelen(tab)) == 0)
 	{
-		ft_free_table_str(tab);
-		write(1, "Error, parsing or memory allocation issue\n", 42);
+		ft_destroy(NULL, NULL, NULL, tab);
 		return (0);
 	}
-	ft_fill_stacks(stack, data, tab, ft_tablelen(tab));
+	if (ft_initialization(data, info, ft_tablelen(tab)) == 0)
+	{
+		ft_destroy(*data, *info, *stack, tab);
+		return (0);
+	}
+	if (ft_fill_stacks(stack, data, tab, ft_tablelen(tab)) == 0)
+	{
+		ft_destroy(*data, *info, *stack, tab);
+		return (0);
+	}
 	if (*stack == NULL)
 	{
 		ft_destroy(*data, *info, *stack, tab);
-		write(1, "Error, parsing or memory allocation issue\n", 42);
+		write(1, "Error\n", 6);
 		return (0);
 	}
 	ft_free_table_str(tab);
+	return (1);
+}
+
+/*
+** Function: ft_act_parse_perform
+** Arguments:
+**		t_pp *data: struct with stack1 & 2 and table of actions
+**		t_info *info: struct with differents index and length info
+** Description:
+**	Function check first and perform the actions read on standard entry.
+** Return:
+**		1: if all actions was correct
+**		0: if an action is not in the possible actions list
+*/
+
+int		ft_act_parse_perform(t_pp *data, t_info *info)
+{
+	char		*line;
+	char		*action;
+
+	while (get_next_line_lite(0, &line) == 1)
+	{
+		if ((action = ft_check_action(line)) == NULL)
+		{
+			ft_strdel(&line);
+			return (0);
+		}
+		ft_strdel(&line);
+		ft_perform_action(data, info, action);
+	}
+	ft_strdel(&line);
 	return (1);
 }
 
@@ -146,32 +184,27 @@ int		ft_parse_and_init(int ac, char **av, t_pp **data, t_info **info, int **stac
 **	has to be integer within IN_MIN and INT_MAX.
 ** Return:
 **	0.
+** Note: Use pp_print_1stack_full(*data, *info, 1).
+**		 File can be find on https://github.com/madvid/push_swap
+**		 in common/not_tracked_print_f.c
+**		 Do not forget to modify /common/Makefile and /include/common.h
 */
 
 int		main(int ac, char **av)
 {
 	int			*int_stack;
 	t_pp		*data;
-	char		*line;
-	char		*action;
 	t_info		*info;
 
 	if (ft_parse_and_init(ac, av, &data, &info, &int_stack) == 0)
 		return (0);
-	while (get_next_line_lite(0, &line) == 1)
+	if (ft_act_parse_perform(data, info) == 0)
 	{
-		if ((action = ft_check_action(line)) == NULL)
-		{
-			ft_strdel(&line);
-			ft_destroy(data, info, int_stack, NULL);
-			return (0);
-		}
-		ft_strdel(&line);
-		ft_perform_action(data, info, action);
+		ft_destroy(data, info, int_stack, NULL);
+		return (0);
 	}
 	(info->len1 == info->tot_len && ft_issort(data, *info, 1, 'a') == 1) ?
 		write(1, "OK\n", 3) : write(1, "KO\n", 3);
 	ft_destroy(data, info, int_stack, NULL);
-	ft_strdel(&line);
 	return (0);
 }

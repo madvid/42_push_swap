@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:10:55 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/29 02:09:30 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 00:06:35 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ int		ft_isall_wthin_int(char **tab)
 	i = 0;
 	if (tab == NULL)
 	{
-		write(1, "Error\n", 8);
+		write(1, "Error\n", 6);
 		return (0);
 	}
 	while (tab[i] != NULL)
 	{
 		if (ft_iswithin_int(tab[i]) == 0)
 		{
-			write(1, "Error\n", 8);
+			write(1, "Error\n", 6);
 			return (0);
 		}
 		i++;

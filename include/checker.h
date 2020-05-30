@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:14 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/29 02:27:18 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 01:02:28 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ typedef	struct	s_pp
 */
 char			*ft_check_action(char *action);
 void			ft_perform_action(t_pp *data, t_info *info, char *action);
-int				ft_parse_and_init(int ac, char **av, t_pp **data,
-				t_info **info, int **stack);
+int				ft_parse_and_init(int ac, char **av, t_pp **data, t_info **info,
+				int **stack);
+int				ft_act_parse_perform(t_pp *data, t_info *info);
 
 /*
 ** functions for swapping: sa, sb, ss, pa, pb

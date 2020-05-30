@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 22:09:55 by md4               #+#    #+#             */
-/*   Updated: 2020/05/29 02:18:39 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 01:35:38 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int		ft_is_digits_and_spaces(char *str)
 			return (0);
 		i++;
 	}
+	if (ft_isspaces_only(str) == 1)
+		return (0);
 	return (1);
 }
 
@@ -94,9 +96,10 @@ int		ft_is_digits_and_spaces(char *str)
 
 int		parser(int ac, char **av, char ***tab)
 {
+	*tab = NULL;
 	if (ac < 2)
 	{
-		write(1, "Empty list of arguments.\n", 25);
+		write(1, "Error\n", 6);
 		return (0);
 	}
 	if (ac > 2)

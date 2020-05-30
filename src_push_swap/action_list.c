@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 10:04:37 by md4               #+#    #+#             */
-/*   Updated: 2020/05/28 01:13:03 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 00:59:01 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ int		ft_add_actions(t_pp *data, char *act)
 	if (table == NULL)
 	{
 		ft_free_table_str(data->act_list);
-		write(1, "Error, memory allocation failed or buffer is empty\n", 51);
+		write(1, "Error\n", 6);
 		return (0);
 	}
 	ft_tablecpy(table, data->act_list);

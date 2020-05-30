@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 13:11:02 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/26 11:58:45 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/29 23:25:18 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ size_t				ft_table_nb_char(char **table);
 char				*ft_table_2_str(char **table);
 int					get_next_line_lite(int fd, char **line);
 int					ft_memncat(char **main, char *add, int len);
+int					ft_isspaces_only(char *str);
 
 #endif

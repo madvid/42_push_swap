@@ -6,7 +6,7 @@
 #    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 10:48:33 by mdavid            #+#    #+#              #
-#    Updated: 2020/05/29 01:13:58 by md4              ###   ########.fr        #
+#    Updated: 2020/05/29 18:29:01 by md4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,16 @@ INCLUDE = common.h
 INC_DIR = ../include/
 LIB_DIR = ../libraries/
 LIB_A = ../libft.a
-FLAGS = -Wall -Wextra -Werror -g -I$(INC_DIR)#-fsanitize=address -fstack-protector -fsanitize=undefined
+FLAGS = -Wall -Wextra -Werror -g -I$(INC_DIR) #-fsanitize=address -fstack-protector -fsanitize=undefined
 
 ### SOURCES AND OBJECTS VARIABLES ###
 
+# Add the file not_tracked_print_f to CM_FILES to be able to quickly print the stacks (only one or both)
 CM_FILES =	check_args \
 			common_tools \
 			ft_issort \
-			parser
+			parser \
+			not_tracked_print_f
 
 CM_SRC = $(addsuffix .c,$(CM_FILES))
 CM_OBJ = $(CM_SRC:.c=.o)

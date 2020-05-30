@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:20:38 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/28 01:03:50 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 01:36:01 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,16 @@ int		main(int ac, char **av)
 
 	info = NULL;
 	if (parser(ac, av, &tab) == 0)
+	{
+		ft_destroy(NULL, NULL, NULL, tab);
 		return (0);
+	}
 	ft_initialization(&data, &info, ft_tablelen(tab));
-	ft_fill_stacks(&int_stack, &data, tab, ft_tablelen(tab));
+	if (ft_fill_stacks(&int_stack, &data, tab, ft_tablelen(tab)) == 0)
+	{
+		ft_destroy(data, info, int_stack, tab);
+		return (0);
+	}
 	if (info->tot_len <= 5 && ft_issort(data, *info, 1, 'a') == 0)
 		ft_optimal_small_sort(data, info);
 	if (info->tot_len > 5 && ft_issort(data, *info, 1, 'a') == 0)

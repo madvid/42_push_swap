@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:11 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/29 02:33:31 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 00:13:35 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef	struct	s_pp
 	int			**stack2;
 	char		**act_list;
 	size_t		i_act;
-	size_t		nb_actions;
 }				t_pp;
 # endif
 

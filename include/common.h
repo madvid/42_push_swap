@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:02:59 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/29 02:30:49 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 00:13:23 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef	struct	s_pp
 	int			**stack2;
 	char		**act_list;
 	size_t		i_act;
-	size_t		nb_actions;
 }				t_pp;
 # endif
 
@@ -60,8 +59,9 @@ int				ft_iswithin_int(char *s);
 int				ft_initialization(t_pp **data, t_info **info, size_t total);
 void			ft_destroy(t_pp *data, t_info *info, int *int_stack,
 				char **tab);
-void			ft_fill_stacks(int **int_stack, t_pp **data, char **av,
+int				ft_fill_stacks(int **int_stack, t_pp **data, char **av,
 				size_t total);
+int				ft_unicity_nb(int *stack, size_t total);
 void			pp_print_2stack_full(t_pp data, t_info info);
 void			pp_print_1stack_full(t_pp data, t_info info, int i_stack);
 
@@ -70,5 +70,11 @@ void			pp_print_1stack_full(t_pp data, t_info info, int i_stack);
 ** Files: ft_issort.c
 */
 int				ft_issort(t_pp *data, t_info info, int croissant, char a_or_b);
+
+/*
+** Function to quickly print -> File: not_tracked_print_f.c
+*/
+void			pp_print_1stack_full(t_pp data, t_info info, int i_stack);
+void			pp_print_2stack_full(t_pp data, t_info info);
 
 #endif

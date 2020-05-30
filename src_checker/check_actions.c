@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:33:44 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/28 01:35:40 by md4              ###   ########.fr       */
+/*   Updated: 2020/05/30 00:59:27 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_check_actions(char *buf, const char **actions)
 		if (ft_strcmp(buf, actions[i]) == 0)
 			break ;
 	if (i == 11)
-		write(1, "Error, action is not in the list\n", 33);
+		write(1, "Error\n", 6);
 	return ((i == 11) ? 0 : 1);
 }
 

@@ -6,7 +6,7 @@
 #    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 10:48:33 by mdavid            #+#    #+#              #
-#    Updated: 2020/05/29 00:49:58 by md4              ###   ########.fr        #
+#    Updated: 2020/05/29 23:25:04 by md4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ LIB_FILES =	ft_atoi \
 			ft_free_table_str \
 			ft_isdigit \
 			ft_isnumber \
+			ft_isspaces_only \
 			ft_memalloc \
 			ft_memcpy \
 			ft_memncat \
