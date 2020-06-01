@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 13:21:11 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/30 00:13:35 by md4              ###   ########.fr       */
+/*   Updated: 2020/06/01 19:14:36 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void			quicksort(int **sort_lst, int index_left, int index_right);
 void			quicksort_2stacks_init(t_pp *data1, t_pp *data2, t_info *info1,
 				t_info *info2);
 void			quicksort_2stacks(t_pp *data, t_info info, char a_or_b);
+void			ft_quicksort_2stacks_next(t_pp *data, t_info info, char a_or_b);
 int				ft_check_for_return(t_pp *data, t_info info);
 
 /*

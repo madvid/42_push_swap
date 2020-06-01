@@ -6,7 +6,7 @@
 /*   By: md4 <md4@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:15:13 by mdavid            #+#    #+#             */
-/*   Updated: 2020/05/28 01:07:22 by md4              ###   ########.fr       */
+/*   Updated: 2020/06/01 19:15:05 by md4              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,21 @@ void	quicksort_2stacks(t_pp *data, t_info info, char a_or_b)
 			return ;
 		a_or_b = 'a';
 	}
+	ft_quicksort_2stacks_next(data, info, a_or_b);
+}
+
+/*
+** FUNCTION : quicksort_2stacks
+** PARAMETRES :	t_pp *data1 : 1st struct of data holding the 1st stack.
+**				t_pp *data2 : 2nd struct of data holding the 2nd stack.
+** DESCRIPTION :
+**		Sort the stack of .
+** RETOUR :
+**		RIEN.
+*/
+
+void	ft_quicksort_2stacks_next(t_pp *data, t_info info, char a_or_b)
+{
 	if (ft_both_issort(data, info) == 2)
 	{
 		if (info.len1 + info.start1 == info.tot_len)

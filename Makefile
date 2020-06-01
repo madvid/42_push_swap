@@ -6,7 +6,7 @@
 #    By: md4 <md4@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/11 16:48:33 by weilin            #+#    #+#              #
-#    Updated: 2020/05/29 01:13:10 by md4              ###   ########.fr        #
+#    Updated: 2020/06/01 18:28:36 by md4              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,8 @@ PS_FILES =		action_list \
 PS_SRC = $(addprefix $(PS_DIR), $(addsuffix .c,$(PS_FILES)))
 PS_OBJ = $(PS_SRC:.c=.o)
 
-CHK_FILES =		check_actions  \
+CHK_FILES =		action \
+				check_actions  \
 				checker \
 				init_tab_actions \
 				rev_rotate \
